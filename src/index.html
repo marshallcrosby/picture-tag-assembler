@@ -1,0 +1,1332 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    <link rel="stylesheet" href="https://luriechildrens.org/static/lurie/css/main.css?v=88UDUlVG3yzQxwAHPkiXsY7_l6BWx2YlFQojDZX-HpQ" />
+
+    <!-- Preload and link to redesign CSS -->
+    <link rel="preload" href="https://luriechildrens.org/static/lurie/css/redesign.css?v=CFWgW0tvEKyJITIcPKYg" as="style" />
+    <link rel="stylesheet" type="text/css" href="https://luriechildrens.org/static/lurie/css/redesign.css?v=CFWgW0tvEKyJITIcPKYg" />
+
+    <!-- Load some js libraries right away -->
+    <script>
+
+        // Dynamically add has-js class immediately
+        var root = document.getElementsByTagName('html')[0];
+        root.classList.add('has-js');
+
+        // Dynamically set scrollbar width css variable
+        function getScrollbarWidth() {
+            var outer = document.createElement('div');
+            outer.style.visibility = 'hidden';
+            outer.style.overflow = 'scroll';
+            document.body.appendChild(outer);
+            var inner = document.createElement('div');
+            outer.appendChild(inner);
+            var scrollbarWidth = (outer.offsetWidth - inner.offsetWidth);
+            outer.parentNode.removeChild(outer);
+            return scrollbarWidth + 'px';
+        }
+
+        // Once body exists run functions
+        (function domBodyExists() {
+            if (document.body) {
+                root.classList.add('js-scrollbar-width-set');
+                document.documentElement.style.setProperty('--scrollbar-width', getScrollbarWidth());
+            } else {
+                window.requestAnimationFrame(domBodyExists);
+            }
+        })();
+    </script>
+    <style>
+        img[data-sizes="auto"] {
+            display: block;
+            width: 100%;
+        }
+    </style>
+    <title>Lurie Children&#x27;s Hospital of Chicago | Pediatric Medicine</title>
+
+</head>
+<body class="site-body l-body has-header-fixed off-canvas-right   start-page ">
+    
+
+    <div class="site-surround l-surround  ">
+    <a href="#mainContent" class="skip-link">Skip to main content</a>
+
+<header class="site-header l-header" data-search-page-url="/en/search/">
+    <div class="alert-classic-desktop d-none d-lg-block"></div>
+    <div class="site-header__elements l-header__elements">
+        <div class="site-header__search-mobile mln" data-mln-breakpoint="992">
+            <ul class="mln__list">
+                <li>
+                    <a href="#">
+                        <span class="sr-only">Search</span>
+                    </a>
+                    <div class="mln__child__mega-menu">
+                        <div class="search-mobile-placeholder"></div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+        <!-- Branding -->
+        <div class="site-header__logo">
+            <a href="/">
+                <img src="https://luriechildrens.org/globalassets/assets/logos/lurie-childrens-logo-rgb-ii.png" width="200" height="40" alt="Lurie Children&#x27;s">
+            </a>
+        </div>
+
+        <div class="site-header__utility-desktop-wrap utility-nav-desktop-placeholder">
+            <nav class="site-header__utility mln mln--navbar" data-mln-breakpoint="992">
+                    <ul class="site-header__utility-list mln__list">
+                            <li>
+                                <a href="https://mychart.luriechildrens.org/" target="_blank">
+                                    MyChart
+                                        <i class="fa fa-external-link" aria-hidden="true" style="font-size: .8em;"></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/en/patients-visitors/billing-financial-assistance/">
+                                    Billing <span class="ampersand">&amp; </span> Financial Assistance
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/en/for-healthcare-professionals/">
+                                    Healthcare Professionals
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/en/for-healthcare-professionals/education/medical-education-training/">
+                                    Training <span class="ampersand">&amp; </span> Education
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://careers.luriechildrens.org/en/" target="_blank">
+                                    Careers
+                                </a>
+                            </li>
+                            <li class="donor-link">
+                                <a href="https://my.luriechildrens.org/page/43035/donate/1">
+                                    Donate
+                                </a>
+                            </li>
+                            <li class="utility-dropdown d-none d-lg-inline-block">
+                                    <a href="#">I want to</a>
+                                <div class="mln__child__mega-menu">
+                                    <div class="mln__child__mega-menu-body">
+                                        <ul>
+                                                <li><a href="/en/appointments/">Make an Appointment</a></li>
+                                                <li><a href="https://mychart.luriechildrens.org/" target="_blank">Log into MyChart</a></li>
+                                                <li><a href="/en/contact-us/">Contact Lurie Children&#x27;s</a></li>
+                                                <li><a href="/en/patients-visitors/medical-records/">Request Medical Records</a></li>
+                                                <li><a href="/en/patients-visitors/billing-financial-assistance/understanding-hospital-charges/">Understand My Charges</a></li>
+                                                <li><a href="/en/patients-visitors/billing-financial-assistance/pay-your-bill-online/">Pay My Bill</a></li>
+                                                <li><a href="/en/for-healthcare-professionals/referrals/">Refer a Patient</a></li>
+                                                <li><a href="https://careers.luriechildrens.org/en/" target="_blank">Apply for a Job</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </li>
+
+                    </ul>
+            </nav>
+        </div>
+        <!-- Show/hide off-canvas button -->
+        <button class="site-header__toggle toggle-off-canvas" type="button" aria-expanded="false" aria-controls="offCanvasArea" aria-label="Toggle Menu">
+            <span class="site-header__toggle-burger">
+                <span class="site-header__toggle-patty"></span>
+                <span class="site-header__toggle-patty"></span>
+                <span class="site-header__toggle-patty"></span>
+            </span>
+        </button>
+        <div class="site-header__off-canvas slide-over-transition l-off-canvas" id="offCanvasArea" tabindex="-1" aria-labelledby="offCanvasTitle">
+            <div class="site-header__off-canvas-helper l-off-canvas__helper">
+                <span id="offCanvasTitle" class="sr-only mr-auto">Site navigation</span>
+                
+
+<nav class="site-header__nav-desktop mln mln--navbar" data-mln-breakpoint="992" aria-label="primary">
+    <ul class="mln__list">
+        <li>
+                <a href="/en/doctors/">Find a Doctor</a>
+
+        </li>
+        <li>
+                <a href="/en/locations/">Locations</a>
+
+        </li>
+
+    <li>
+        <a href="#">Specialties <span class="ampersand">&amp; </span> Conditions</a>
+        <div class="mln__child__mega-menu">
+            <div class="mln__child__mega-menu-body">
+                <div class="row">
+                    <div class="col-4 pr-0">
+                        <div class="mln__child__mega-menu-section bg-white text-center">
+                                <h2>
+                                    <a href="/en/specialties-conditions/">Specialties <span class="ampersand">&amp; </span> Conditions</a>
+                                </h2>
+
+                                <img class="d-block mx-auto my-5" src="https://luriechildrens.org/globalassets/media/badges/2024-2025/badge-childrenshospitals-11-specialties-400x515.png" alt="" width="148" height="182">
+
+                            <p class="text-center"><strong>Nationally Ranked Care</strong><br />In the 2024-25 <em>U.S. News&nbsp;<span class="ampersand">&amp;&nbsp;</span>World Report</em> rankings of the Best Children&rsquo;s Hospitals, Lurie Children&rsquo;s continues to be the top hospital in Illinois, ranking in 11 specialties.</p>
+
+                        </div>
+                    </div>
+                    <div class="col-8">
+                        <div class="mln__child__mega-menu-section">
+                                <div class="site-header__specialty-search global-search">
+                                    <form class="global-search__form" method="get" action="/en/search/">
+                                        <input id="st" name="st" type="hidden" value="1" />
+                                        <div class="form__fieldset">
+                                                <label class="sr-only" for="specialtySearchInput">Search specialties and conditions</label>
+                                            <span class="fieldset__icon icon-search" aria-hidden="true"></span>
+                                            <input required class="fieldset__input" id="specialtySearchInput" placeholder="Search specialties and conditions" type="search" name="q" data-tab-index="-1" autocomplete="off" />
+                                        </div>
+                                        <input class="submit-btn-common form__submit btn-primary" type="submit" value="Search">
+                                    </form>
+                                </div>
+
+                                <ul class="list-common list-auto-columns">
+                                        <li>
+                                            <span class="h6">Common Specialties</span>
+                                        </li>
+                                            <li>
+                                                <a href="/en/specialties-conditions/adolescent-medicine/">Adolescent <span class="ampersand">&amp; </span> Young Adult Medicine</a>
+                                            </li>
+                                            <li>
+                                                <a href="/en/specialties-conditions/pediatric-allergy-immunology/">Allergy <span class="ampersand">&amp; </span> Immunology</a>
+                                            </li>
+                                            <li>
+                                                <a href="/en/specialties-conditions/pediatric-anesthesia/">Anesthesiology</a>
+                                            </li>
+                                            <li>
+                                                <a href="/en/specialties-conditions/pediatric-hematology-oncology/">Cancer <span class="ampersand">&amp; </span> Blood Disorders</a>
+                                            </li>
+                                            <li>
+                                                <a href="/en/specialties-conditions/heart-center/">Cardiology <span class="ampersand">&amp; </span> Cardiac Surgery</a>
+                                            </li>
+                                            <li>
+                                                <a href="/en/specialties-conditions/pediatric-nutrition/">Clinical Nutrition</a>
+                                            </li>
+                                            <li>
+                                                <a href="/en/specialties-conditions/pediatric-critical-care/">Critical Care</a>
+                                            </li>
+                                            <li>
+                                                <a href="/en/specialties-conditions/dentistry/">Dentistry</a>
+                                            </li>
+                                            <li>
+                                                <a href="/en/specialties-conditions/pediatric-dermatology/">Dermatology</a>
+                                            </li>
+                                            <li>
+                                                <a href="/en/specialties-conditions/developmental-behavioral-pediatrics/">Developmental <span class="ampersand">&amp; </span> Behavioral Pediatrics</a>
+                                            </li>
+                                            <li>
+                                                <a href="/en/specialties-conditions/pediatric-emergency-room/">Emergency Medicine</a>
+                                            </li>
+                                            <li>
+                                                <a href="/en/specialties-conditions/pediatric-endocrinology/">Endocrinology</a>
+                                            </li>
+                                            <li>
+                                                <a href="/en/specialties-conditions/pediatric-ent-otolaryngology/">ENT</a>
+                                            </li>
+                                            <li>
+                                                <a href="/en/specialties-conditions/fetal-health/">Fetal Health</a>
+                                            </li>
+                                            <li>
+                                                <a href="/en/specialties-conditions/pediatric-gastroenterologist/">Gastroenterology</a>
+                                            </li>
+                                            <li>
+                                                <a href="/en/specialties-conditions/pediatric-surgery/">General Pediatric Surgery</a>
+                                            </li>
+                                            <li>
+                                                <a href="/en/specialties-conditions/pediatric-genetic-disorders/">Genetics</a>
+                                            </li>
+                                            <li>
+                                                <a href="/en/specialties-conditions/pediatric-infectious-diseases/">Infectious Diseases</a>
+                                            </li>
+                                            <li>
+                                                <a href="/en/specialties-conditions/pediatric-radiology/">Medical Imaging</a>
+                                            </li>
+                                            <li>
+                                                <a href="/en/specialties-conditions/neonatology/">Neonatology</a>
+                                            </li>
+                                            <li>
+                                                <a href="/en/specialties-conditions/pediatric-nephrology/">Nephrology</a>
+                                            </li>
+                                            <li>
+                                                <a href="/en/specialties-conditions/pediatric-neurology/">Neurology</a>
+                                            </li>
+                                            <li>
+                                                <a href="/en/specialties-conditions/pediatric-neurosurgery/">Neurosurgery</a>
+                                            </li>
+                                            <li>
+                                                <a href="/en/specialties-conditions/pediatric-ophthalmologist/">Ophthalmology</a>
+                                            </li>
+                                            <li>
+                                                <a href="/en/specialties-conditions/pediatric-orthopedic-surgery/">Orthopedics</a>
+                                            </li>
+                                            <li>
+                                                <a href="/en/specialties-conditions/pediatricians/">Primary Care</a>
+                                            </li>
+                                            <li>
+                                                <a href="/en/specialties-conditions/pediatric-psychiatrist-psychologist/">Psychiatry <span class="ampersand">&amp; </span> Behavioral Health</a>
+                                            </li>
+                                            <li>
+                                                <a href="/en/specialties-conditions/pediatric-pulmonary/">Pulmonary Medicine</a>
+                                            </li>
+                                            <li>
+                                                <a href="/en/specialties-conditions/pediatric-rehabilitation/">Rehabilitative Services</a>
+                                            </li>
+                                            <li>
+                                                <a href="/en/specialties-conditions/pediatric-rheumatologist/">Rheumatology</a>
+                                            </li>
+                                            <li>
+                                                <a href="/en/specialties-conditions/pediatric-transplantation/">Transplant</a>
+                                            </li>
+                                            <li>
+                                                <a href="/en/specialties-conditions/pediatric-urology/">Urology</a>
+                                            </li>
+                                            <li>
+                                                <a href="/en/specialties-conditions/"><strong>See all Specialties <span class="ampersand">&amp; </span> Conditions</strong></a>
+                                            </li>
+
+                                </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </li>
+
+
+
+    <li>
+        <a href="#">Patients <span class="ampersand">&amp; </span> Visitors</a>
+        <div class="mln__child__mega-menu">
+            <div class="mln__child__mega-menu-body">
+                <div class="row">
+                    <div class="col-8 pr-0">
+                        <div class="mln__child__mega-menu-section bg-white">
+                                <h2>
+                                    <a href="/en/patients-visitors/">Patients <span class="ampersand">&amp; </span> Visitors</a>
+                                </h2>
+
+                                <div class="row mb-4">
+                                        <div class="col-4">
+                                                <h3 class="h6">Plan Your Visit</h3>
+                                                <ul class="list-common">
+                                                        <li>
+                                                            <a href="/en/appointments/preparing-for-your-first-appointment/">Preparing for Your Appointment</a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="/en/patients-visitors/billing-financial-assistance/insurance/">Insurance</a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="/en/patients-visitors/visiting-lurie-childrens/visiting-hours-guidelines/">Visiting Hours <span class="ampersand">&amp; </span> Guidelines</a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="/en/specialties-conditions/second-opinions/">Second Opinions</a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="/en/patients-visitors/international-patient-care/">International Patient Care</a>
+                                                        </li>
+                                                </ul>
+                                        </div>
+                                        <div class="col-4">
+                                                <h3 class="h6">While You&#x27;re Here</h3>
+                                                <ul class="list-common">
+                                                        <li>
+                                                            <a href="/en/patients-visitors/visiting-lurie-childrens/tour-the-hospital/">Tour the Hospital</a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="/en/locations/ann-robert-h-lurie-children-s-hospital-of-chicago-18/">Parking <span class="ampersand">&amp; </span> Directions</a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="/en/patients-visitors/resources-support-services-for-families/">Support Services for Families</a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="/en/patients-visitors/visiting-lurie-childrens/lodging-accommodations/">Lodging <span class="ampersand">&amp; </span> Accommodations</a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="/en/patients-visitors/meet-your-care-team/">Meet Your Care Team</a>
+                                                        </li>
+                                                </ul>
+                                        </div>
+                                        <div class="col-4">
+                                                <h3 class="h6">After Your Visit</h3>
+                                                <ul class="list-common">
+                                                        <li>
+                                                            <a href="/en/patients-visitors/billing-financial-assistance/">Billing <span class="ampersand">&amp; </span> Financial Assistance</a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="/en/patients-visitors/billing-financial-assistance/pay-your-bill-online/">Pay Your Bill Online</a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="/en/patients-visitors/medical-records/">Medical Records</a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="/en/patients-visitors/patient-family-experience/">Patient Family Experience</a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="/en/patients-visitors/care-coordination-services/">Care Coordination Services</a>
+                                                        </li>
+                                                </ul>
+                                        </div>
+                                </div>
+
+                            <p class="mb-2" style="font-size: 12px;"><strong>PLEASE NOTE:</strong> All visitor policies will be evaluated based on COVID-19 conditions to ensure the health and safety of our patients and families.&nbsp;</p>
+                                <p class="mb-2" style="font-size: 12px;"><a href="/en/patients-visitors/visiting-lurie-childrens/visiting-hours-guidelines/">View the latest policy</a></p>
+                        </div>
+                    </div>
+                    <div class="col-4">
+                            <img class="d-block mx-auto my-5" src="https://luriechildrens.org/contentassets/651377b3720448ad9cf43caf9bc8848c/hospital-exterior.jpg" alt="">
+                        <div class="mx-auto" style="max-width: 238px;">
+                            
+<p class="small"><strong>Ann <span class="ampersand">&amp; </span> Robert H. Lurie<br />Children&rsquo;s Hospital of Chicago</strong><br />225 E. Chicago Avenue<br />Chicago, Illinois 60611</p>
+
+                            <div>
+                                    <a href="/en/locations/ann-robert-h-lurie-children-s-hospital-of-chicago-18/?api=1&amp;destination=41.8962231,-87.6218322">View Location Details</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </li>
+
+
+
+    <li>
+        <a href="/en/ways-to-help/">Ways To Help</a>
+    </li>
+
+
+
+    <li>
+        <a href="https://research.luriechildrens.org/en/">Research Innovation</a>
+    </li>
+
+
+        <li class="expando-search d-none d-lg-inline-block">
+            <a href="#">Search</a>
+
+            <div class="mln__child__mega-menu">
+                <div class="mln__child__mega-menu-body">
+                    <div class="p-5">
+
+                        <!-- Search desktop placeholder -->
+                        <div class="search-desktop-placeholder">
+
+                            <!-- The search forms moves via js depending on screensize -->
+                            <div class="site-header__search global-search" id="global-search-suggest" data-suggestion-url="/en/search/Suggest">
+                                <div class="container">
+                                    <form class="global-search__form" method="get" action="/en/search/">
+                                        <div class="form__fieldset">
+                                            <label class="sr-only" for="globalSearchInput">Search</label>
+                                            <span class="fieldset__icon icon-search" aria-hidden="true"></span>
+                                            <input required class="fieldset__input" id="globalSearchInput" placeholder="I'm looking for ..." type="search" name="q" aria-label="Search" data-tab-index="-1" autocomplete="off" />
+                                        </div>
+                                        <input class="submit-btn-common form__submit btn btn-primary" type="submit" value="Search">
+                                    </form>
+                                </div>
+                                <div id="search-suggestions-placeholder">
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </li>
+    </ul>
+</nav>
+    <div class="mt-4 d-lg-none">
+        <a class="btn-new w-100" href="/en/appointments/">Make an Appointment</a>
+    </div>
+    <nav class="site-header__nav-mobile">
+        <ul>
+            <li>
+                <a href="/en/doctors/">Find a Doctor</a>
+            </li>
+            <li>
+                <a href="/en/locations/">Locations</a>
+            </li>
+                <li>
+                    <a href="/en/specialties-conditions/">Specialties <span class="ampersand">&amp; </span> Conditions</a>
+                </li>
+                <li>
+                    <a href="/en/patients-visitors/">Patients <span class="ampersand">&amp; </span> Visitors</a>
+                </li>
+                <li>
+                    <a href="/en/ways-to-help/">Ways To Help</a>
+                </li>
+                <li>
+                    <a href="https://research.luriechildrens.org/en/">Research Innovation</a>
+                </li>
+        </ul>
+    </nav>
+
+
+            </div>
+            <div class="d-lg-none" style="padding: 10px 10px 0 13%; color: var(--color-gray-800);">
+                <strong>Other Quick Links</strong>
+            </div>
+            <div class="site-header__utility-mobile-wrap utility-nav-mobile-placeholder">
+            </div>
+                <div class="mt-4 d-lg-none">
+                    <a class="btn-new btn-new-tertiary w-100" href="https://my.luriechildrens.org/page/43035/donate/1">Donate</a>
+                </div>
+        </div>
+    </div>
+</header>
+<div id="sticky-header-spacer"></div>
+
+<div class="site-canvas l-canvas">
+
+    <!-- Move the classic alert to where it needs to go before page is fully loaded -->
+    <script>
+        (function () {
+            var classicAlertElList = document.querySelectorAll('.alert-block');
+            var classicAlertElDesktopParking = document.querySelector('.alert-classic-desktop');
+            var classicAlertElMobileParking = document.querySelector('.alert-classic-mobile');
+            var mediaQuery = window.matchMedia('(min-width: 992px)');
+
+            classicAlertElList.forEach((classicAlertEl) => {
+                var alertChangePosition = () => {
+                    if (mediaQuery.matches) {
+                        classicAlertElDesktopParking.appendChild(classicAlertEl);
+                    } else {
+                        classicAlertElMobileParking.appendChild(classicAlertEl);
+                    }
+                }
+
+                if (classicAlertEl) {
+                    window.addEventListener('resize', function () {
+                        alertChangePosition();
+                    });
+                    alertChangePosition();
+                }
+            });
+        }());
+
+        // Set scroll-margin top css variable
+        (function () {
+
+            var siteHeader = document.querySelector('.site-header.l-header');
+            applyScrollTopMargin(siteHeader);
+
+            var resizeTimer;
+            window.addEventListener('resize', function() {
+                clearTimeout(resizeTimer);
+                resizeTimer = setTimeout(function() {
+                    applyScrollTopMargin(siteHeader);
+                }, 300);
+            });
+
+            window.addEventListener('DOMContentLoaded', () => {
+            });
+
+            applyScrollTopMargin(siteHeader);
+
+            window.addEventListener('load', () => {
+                applyScrollTopMargin(siteHeader);
+            });
+
+        }());
+        
+        // Dynamically set scrolltop margin css variable
+        function applyScrollTopMargin(el) {
+            document.documentElement.style.setProperty('--scroll-margin-top',  el.offsetHeight + 20 + 'px');
+        }
+    </script>
+
+
+
+
+    <main class="site-main p-0">
+        <div class="main-body">
+            <div id="mainContent">
+
+<div class="hero-new hero-new--content-wide ">
+        <div class="hero-new__image">
+            <picture>
+                <source srcset="https://luriechildrens.org/contentassets/cf051d98ad784474a8f4b80ce9ad5155/homepage-hero-2024.jpg" media="(min-width: 992px)">
+                <source srcset="https://luriechildrens.org/contentassets/cf051d98ad784474a8f4b80ce9ad5155/homepage-hero-2024.jpg" media="(min-width: 768px)">
+                <img src="https://luriechildrens.org/contentassets/cf051d98ad784474a8f4b80ce9ad5155/homepage-hero-2024.jpg" alt="" width="768" height="453" loading="lazy" data-picture-tag-assembler>
+            </picture>
+        </div>
+    <div class="hero-new__fade"></div>
+    <div class="hero-new__content py-block-common">
+        <div class="hero-new__body content-new">
+            
+
+
+<h2 class="hero-new__title">Ranked #1 in Illinois for a Reason</h2>
+            
+<p>Lurie Children's is staffed by the very best pediatric specialists who understand kids and will do whatever it takes to provide them with a healthier future.</p>
+
+
+                <div class="btn-group w-100">
+                        <a class="btn-new btn-new-secondary w-100 w-lg-auto" href="/en/appointments/">MAKE AN APPOINTMENT</a>
+                        <a class="btn-new btn-new-primary w-100 w-lg-auto" href="/en/doctors/">Find A Doctor</a>
+                </div>
+
+        </div>
+    </div>
+    <div class="bar-loader">
+        <div class="bar-loader__track"></div>
+    </div>
+</div>
+
+        <div class="background-section background-section--top" style="background-image: url(https://luriechildrens.org/static/lurie/images/redesign/bg-shapes.svg)">
+
+
+
+<div class="container container--outer" id="">
+    <div class="card-new z-1" data-view-markup>
+        <div class="row">
+            <div class="col-lg-5 col-xl-6">
+                <div class="card-new__media">
+                    <picture>
+                        <source srcset="https://picsum.photos/552/380?width=552&amp;height=380" width="552" height="380" media="(min-width: 1200px)">
+                        <source srcset="https://picsum.photos/335/231?width=335&amp;height=231" width="335" height="231" media="(min-width: 992px)">
+                        <source srcset="https://picsum.photos/552/380?width=552&amp;height=380" width="552" height="380" media="(min-width: 768px)">
+                        <source srcset="https://picsum.photos/434/299?width=434&amp;height=299" width="434" height="299" media="(min-width: 576px)">
+                        <img src="https://picsum.photos/469/323?width=469&amp;height=323" alt="" width="469" height="323" data-picture-tag-assembler>
+                    </picture>
+                </div>
+            </div>
+            <div class="col-lg-7 col-xl-6 d-flex align-items-center">
+                <div class="card-new__body">
+                    <h1 class="h2"> <span class="eyebrow">TOP-RANKED</span> <br> Children's Hospital</h1>
+                    <div class="row">
+                        <div class="col order-md-2">
+                            <div class="content-new">
+                                
+<p>At Lurie Children's, we understand that caring for kids takes more than medicine. From diagnosis through treatment, it requires compassion and understanding that kids do best when they get to be kids. With a team of world-renowned pediatric experts and kid-friendly care, there&rsquo;s a reason we&rsquo;re ranked the #1 children&rsquo;s hospital in Illinois.</p>
+
+                            </div>
+                        </div>
+                            <div class="col-12 col-md-3 order-md-1">
+                                <div class="content-new">
+                                    <img class="d-block mx-auto mt-4 mt-md-0" src="https://luriechildrens.org/globalassets/media/badges/2024-2025/badge-childrenshospitals-11-specialties-400x515.png" alt="" width="104" height="129">
+                                </div>
+                            </div>
+                            <div class="col-12 order-md-3">
+                                <div class="content-new">
+                                    <p class="text-center text-md-left">
+                                        <a class="btn-new w-100 w-lg-auto mt-4 mt-lg-5" href="/en/specialties-conditions/">View Our Specialties</a>
+                                    </p>
+                                </div>
+                            </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>        </div>
+
+
+<div class="spacer-common"></div>
+<div class="spacer-common"></div>
+<div class="news-feature-container container container--outer">
+    
+
+
+<h2 class="text-center">News <span class="ampersand">&amp; </span> Stories</h2>
+        <div class="news-feature  d-none d-lg-block">
+                <div class="news-feature__media">
+                    <picture>
+                        <source srcset="https://luriechildrens.org/globalassets/media/story-images/usnews2024-25_web-mainnewsstory.jpg" media="(min-width: 992px)">
+                        <source srcset="https://luriechildrens.org/globalassets/media/story-images/usnews2024-25_web-mainnewsstory.jpg" media="(min-width: 768px)">
+                        <img src="https://luriechildrens.org/globalassets/media/story-images/usnews2024-25_web-mainnewsstory.jpg" width="664" height="226" alt="" data-picture-tag-assembler>
+                    </picture>
+                </div>
+            <div class="news-feature__info">
+                <div class="row w-100">
+                    <div class="col-lg-6">
+                        <div class="content-new">
+                            <h3 class="h2 text-white">Lurie Children&#x2019;s Is Again Ranked #1 Pediatric Hospital in Illinois by U.S. News <span class="ampersand">&amp; </span> World Report</h3>
+
+<p>Ann&nbsp;<span class="ampersand">&amp;&nbsp;</span>Robert H. Lurie Children&rsquo;s Hospital of Chicago continues to be recognized as #1 in Illinois in the&nbsp;<em>U.S. News&nbsp;<span class="ampersand">&amp;&nbsp;</span>World Report</em> Best Children&rsquo;s Hospitals annual rankings. Lurie Children&rsquo;s is the only pediatric hospital in Illinois ranked in all 11 specialties, by far outpacing other children&rsquo;s hospitals in the state.</p>
+
+                                <p>
+                                    <a href="/en/news-stories/lurie-childrens-is-again-ranked-1-pediatric-hospital-in-illinois-by-u.s.-news--world-report" class="btn-new btn-new-secondary w-100 w-lg-auto">Read More</a>
+                                </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card-new card-new--standard h-100 d-flex d-lg-none flex-column clickable-card">
+                <div class="card-new__media">
+                    <picture>
+                        <source srcset="https://luriechildrens.org/globalassets/media/story-images/usnews2024-25_web-mainnewsstory.jpg" media="(min-width: 992px)">
+                        <source srcset="https://luriechildrens.org/globalassets/media/story-images/usnews2024-25_web-mainnewsstory.jpg" media="(min-width: 768px)">
+                        <img src="https://luriechildrens.org/globalassets/media/story-images/usnews2024-25_web-mainnewsstory.jpg" width="664" height="226" alt="">
+                    </picture>
+                </div>
+            <div class="card-new__info content-new">
+                <h3 class="h4 card-grid__title" style="color: var(--color-primary)">
+                    Lurie Children&#x2019;s Is Again Ranked #1 Pediatric Hospital in Illinois by U.S. News <span class="ampersand">&amp; </span> World Report
+                </h3>
+
+
+<p>Ann&nbsp;<span class="ampersand">&amp;&nbsp;</span>Robert H. Lurie Children&rsquo;s Hospital of Chicago continues to be recognized as #1 in Illinois in the&nbsp;<em>U.S. News&nbsp;<span class="ampersand">&amp;&nbsp;</span>World Report</em> Best Children&rsquo;s Hospitals annual rankings. Lurie Children&rsquo;s is the only pediatric hospital in Illinois ranked in all 11 specialties, by far outpacing other children&rsquo;s hospitals in the state.</p>
+
+                    <p>
+                        <a href="/en/news-stories/lurie-childrens-is-again-ranked-1-pediatric-hospital-in-illinois-by-u.s.-news--world-report" class="btn-new btn-new-link">Read More</a>
+                    </p>
+            </div>
+        </div>
+        <div class="spacer-common"></div>
+
+        <div class="news-grid news-grid--default">
+                <div class="news-grid__item clickable-card">
+                    <div class="news-grid__media">
+                            <picture>
+                                <source src="https://luriechildrens.org/globalassets/media/story-images/transplant-teaser.gif" media="(min-width: 992px)">
+                                <source src="https://luriechildrens.org/globalassets/media/story-images/transplant-teaser.gif" media="(min-width: 768px)">
+                                <img src="https://luriechildrens.org/globalassets/media/story-images/transplant-teaser.gif" width="484" height="246" alt="" data-picture-tag-assembler>
+                            </picture>
+                    </div>
+                    <div class="news-grid__info">
+                        <div class="content-new">
+                            <h3 class="h4 news-grid__title">Lurie Children&#x2019;s Transplant Expertise Shines in Record-Breaking Year&#x202F;</h3>
+
+<p>Lurie Children&rsquo;s surpassed a hospital record in its recent fiscal year by performing a record 140 pediatric transplants, including, heart, kidney, liver and stem cell. &nbsp;</p>
+
+                            <p>
+                                <a href="/en/news-stories/lurie-childrens-transplant-expertise-shines-in-record-breaking-year/" class="btn-new btn-new-link">Read More</a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="news-grid__item clickable-card">
+                    <div class="news-grid__media">
+                            <picture>
+                                <source src="https://luriechildrens.org/globalassets/media/story-images/lim-teaser-sept.gif" media="(min-width: 992px)">
+                                <source src="https://luriechildrens.org/globalassets/media/story-images/lim-teaser-sept.gif" media="(min-width: 768px)">
+                                <img src="https://luriechildrens.org/globalassets/media/story-images/lim-teaser-sept.gif" width="484" height="246" alt="">
+                            </picture>
+                    </div>
+                    <div class="news-grid__info">
+                        <div class="content-new">
+                            <h3 class="h4 news-grid__title">Nonfatal Opioid Overdoses in Youth Spiked During Pandemic</h3>
+
+<p>Drug overdose mortality has risen faster among adolescents than the general population in recent years, largely due to fentanyl. A new study&nbsp;sheds light on trends in nonfatal opioid overdoses in youth &ndash; an area that was not as well characterized, but key to formulating prevention strategies to save lives.</p>
+
+                            <p>
+                                <a href="/en/news-stories/nonfatal-opioid-overdoses-in-youth-spiked-during-pandemic/" class="btn-new btn-new-link">Read More</a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="news-grid__item clickable-card">
+                    <div class="news-grid__media">
+                            <img src="https://luriechildrens.org/static/lurie/images/news-teaser.png" alt="" data-picture-tag-assembler>
+                    </div>
+                    <div class="news-grid__info">
+                        <div class="content-new">
+                            <h3 class="h4 news-grid__title">Lurie Children&#x2019;s Ranks #9 in Newsweek&#x2019;s List of World&#x2019;s Best Pediatric Hospitals</h3>
+
+<p>Lurie Children&rsquo;s ranked #9 in <em>Newsweek&rsquo;s</em> list of the World&rsquo;s Best Specialized Hospitals 2025 in Pediatrics. The hospital is among the top 250 pediatric hospitals worldwide to be recognized.</p>
+
+                            <p>
+                                <a href="/en/news-stories/lurie-childrens-ranks-9-in-newsweeks-list-of-worlds-best-pediatric-hospitals/" class="btn-new btn-new-link">Read More</a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="news-grid__item clickable-card">
+                    <div class="news-grid__media">
+                            <picture>
+                                <source src="https://luriechildrens.org/globalassets/media/pages/blog/laryngitis-in-kids-2.jpeg" media="(min-width: 992px)">
+                                <source src="https://luriechildrens.org/globalassets/media/pages/blog/laryngitis-in-kids-2.jpeg" media="(min-width: 768px)">
+                                <img src="https://luriechildrens.org/globalassets/media/pages/blog/laryngitis-in-kids-2.jpeg" width="484" height="246" alt="">
+                            </picture>
+                    </div>
+                    <div class="news-grid__info">
+                        <div class="content-new">
+                            <h3 class="h4 news-grid__title">Laryngitis in Kids</h3>
+
+<p>Is your child's voice hoarse or raspy? They might have laryngitis. Learn about the causes, symptoms and treatment options for this common condition in children.</p>
+
+                            <p>
+                                <a href="/en/blog/laryngitis-in-kids/" class="btn-new btn-new-link">Read More</a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="news-grid__item clickable-card">
+                    <div class="news-grid__media">
+                            <picture>
+                                <source src="https://luriechildrens.org/globalassets/media/story-images/candace-teaser.gif" media="(min-width: 992px)">
+                                <source src="https://luriechildrens.org/globalassets/media/story-images/candace-teaser.gif" media="(min-width: 768px)">
+                                <img src="https://luriechildrens.org/globalassets/media/story-images/candace-teaser.gif" width="484" height="246" alt="">
+                            </picture>
+                    </div>
+                    <div class="news-grid__info">
+                        <div class="content-new">
+                            <h3 class="h4 news-grid__title">Finding Peace Through Pain: How Psychologists Help Chronic Pain Patients Cope </h3>
+
+<p>Chronic pain often causes disruption to normal childhood activities and affects a child&rsquo;s mood, family and peer relationships, and their ability to do the things they care about. Psychologists are an integral part of these patients' care. Learn about the mental health professionals embedded within each program who address the emotional and mental well-being of their patients.&nbsp;</p>
+
+                            <p>
+                                <a href="/en/blog/finding-peace-through-pain-how-psychologists-help-chronic-pain-patients-cope/" class="btn-new btn-new-link">Read More</a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="news-grid__item clickable-card">
+                    <div class="news-grid__media">
+                            <picture>
+                                <source src="https://luriechildrens.org/globalassets/media/pages/blog/b-screening-test-teaser.jpeg" media="(min-width: 992px)">
+                                <source src="https://luriechildrens.org/globalassets/media/pages/blog/b-screening-test-teaser.jpeg" media="(min-width: 768px)">
+                                <img src="https://luriechildrens.org/globalassets/media/pages/blog/b-screening-test-teaser.jpeg" width="484" height="246" alt="">
+                            </picture>
+                    </div>
+                    <div class="news-grid__info">
+                        <div class="content-new">
+                            <h3 class="h4 news-grid__title">What Parents Need to Know About Newborn Screening</h3>
+
+<p>Newborn screening can help keep babies healthy and identify health conditions early. Learn more about these tests and what to expect.&nbsp;&nbsp;</p>
+
+                            <p>
+                                <a href="/en/blog/what-parents-need-to-know-about-newborn-screening/" class="btn-new btn-new-link">Read More</a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+        </div>
+
+        <div class="spacer-common"></div><div class="btn-group w-100 justify-content-center mb-block-common mb-lg-0 text-center">
+                <a href="/en/blog/" class="btn-new w-100 w-lg-auto">Read More Health Tips from Our Experts</a>
+                <a href="/en/news-stories/" class="btn-new btn-new-secondary w-100 w-lg-auto">Read More Lurie Children&#x27;s News</a>
+        </div>
+
+</div>
+<div class="background-section background-section--bottom" style="background-image: url(https://luriechildrens.org/static/lurie/images/redesign/featured-way-to-help-bg.jpg)">
+    <!-- Container -->
+    <div class="container container--outer">
+        <div class="card-new z-1  mb-block-common">
+            <div class="row">
+                    <div class="col-lg-5">
+                        <div class="card-new__media">
+                            <picture>
+                                <source src="https://luriechildrens.org/contentassets/f369b3c1dbb34b4d8579326f9976970c/research-homepage.jpg?width=435" media="(min-width: 992px)">
+                                <img src="https://luriechildrens.org/contentassets/f369b3c1dbb34b4d8579326f9976970c/research-homepage.jpg" alt="">
+                            </picture>
+                        </div>
+                    </div>
+                <div class="col-lg-7 d-flex align-items-center">
+                    <div class="card-new__body">
+                            <div class="text-center text-md-left mb-3">
+                                    <img src="https://luriechildrens.org/contentassets/f369b3c1dbb34b4d8579326f9976970c/manne-logo-black-sm-1.png" alt="">
+                            </div>
+                            <h3 class="h4">
+Innovating Through Pediatric Research
+                            </h3>
+                        <div class="row">
+                                <div class="col order-md-2">
+                                    <div class="content-new">
+                                        
+<p>Research at Lurie Children's is conducted through Stanley Manne Children's Research Institute. Our goal is to generate new knowledge and translate advancements in the prevention, diagnosis, and treatment of diseases that affect children&rsquo;s health. Research studies are led by over 750 researchers and are organized into four scientific pillars: Basic and Preclinical Science; Clinical and Community Trials; Community, Population Health, and Outcomes; and Quantitative Science.</p>
+
+                                    </div>
+                                </div>
+
+                                <div class="col-12 order-md-3">
+                                    <div class="content-new">
+                                        <p class="text-center text-md-left">
+                                            <a class="btn-new  w-100 w-lg-auto mt-5" href="https://research.luriechildrens.org/en/">
+                                                Learn More About Our Research<span class="btn-new__icon">
+                                                    <svg class="btn-new__icon-svg" version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" xml:space="preserve" width="16" height="16">
+                                                    <style type="text/css">
+                                                        .arrow-line {
+                                                            fill: none;
+                                                            stroke: #2D2D2D;
+                                                            stroke-width: 1.5;
+                                                            stroke-linecap: round;
+                                                            stroke-miterlimit: 10;
+                                                        }
+</style>
+                                                    <polyline class="arrow-line" points="8.4,4.5 12,8 8.4,11.5 "></polyline>
+                                                    <line class="arrow-line" x1="12" y1="8" x2="4" y2="8"></line>
+                                                    <circle class="arrow-line" cx="8" cy="8" r="7.2"></circle>
+                                                </svg>
+                                                </span>
+                                            </a>
+                                        </p>
+                                    </div>
+                                </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+        <div class="container container--outer text-white">
+            <div class="ways-to-help">
+                <div class="row">
+                    <div class="col-xl-6 order-2 order-xl-1 pr-xl-5">
+                        <div class="content-new">
+                            <h3>Join Us in Creating a Healthier Future for Every Child</h3>
+                            
+<p>As a non-profit medical center, Lurie Children&rsquo;s relies on an engaged and supportive community to elevate the standard of medical care for more children, create innovative programs, accelerate cutting edge research discoveries and work with community partners to make Chicago&rsquo;s neighborhoods safer for children.</p>
+
+                            <div class="btn-group w-100">
+                                    <a class="btn-new btn-new-secondary w-100 w-lg-auto" href="/en/ways-to-help/">
+                                        Ways to Help<span class="btn-new__icon">
+                                        <svg class="btn-new__icon-svg" version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" xml:space="preserve" width="16" height="16">
+                                            <style type="text/css">
+                                                .arrow-line {
+                                                    fill: none;
+                                                    stroke: #2D2D2D;
+                                                    stroke-width: 1.5;
+                                                    stroke-linecap: round;
+                                                    stroke-miterlimit: 10;
+                                                }
+                                            </style>
+                                            <polyline class="arrow-line" points="8.4,4.5 12,8 8.4,11.5 "></polyline>
+                                            <line class="arrow-line" x1="12" y1="8" x2="4" y2="8"></line>
+                                            <circle class="arrow-line" cx="8" cy="8" r="7.2"></circle>
+                                            </svg>
+                                        </span>
+                                    </a>
+                                    <a class="btn-new btn-new-primary w-100 w-lg-auto" href="https://my.luriechildrens.org/page/43035/donate/1">
+                                        Donate<span class="btn-new__icon">
+                                        <svg class="btn-new__icon-svg" version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" xml:space="preserve" width="16" height="16">
+                                            <style type="text/css">
+                                                .arrow-line {
+                                                    fill: none;
+                                                    stroke: #2D2D2D;
+                                                    stroke-width: 1.5;
+                                                    stroke-linecap: round;
+                                                    stroke-miterlimit: 10;
+                                                }
+                                            </style>
+                                            <polyline class="arrow-line" points="8.4,4.5 12,8 8.4,11.5 "></polyline>
+                                            <line class="arrow-line" x1="12" y1="8" x2="4" y2="8"></line>
+                                            <circle class="arrow-line" cx="8" cy="8" r="7.2"></circle>
+                                            </svg>
+                                        </span>
+                                    </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-6 order-1 order-xl-2">
+                        <div class="photo-stack">
+                                <img class="test-class" loading="lazy" src="https://luriechildrens.org/contentassets/f369b3c1dbb34b4d8579326f9976970c/ways-to-help-homepage-2.jpg" alt="" data-picture-tag-assembler width="400" height="265">
+                                <img class="test-class" loading="lazy" src="https://luriechildrens.org/contentassets/f369b3c1dbb34b4d8579326f9976970c/ways-to-help-homepage-1.jpg" alt="" data-picture-tag-assembler width="410" height="370">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+</div>
+
+<div class="container container--outer" id="">
+    <div class="awards py-block-common">
+        <div class="row">
+            <div class="col-xl-5">
+                <div class="content-new">
+                    <h2 class="h4">Awards <span class="ampersand">&amp; </span> Accolades</h2>
+                    <p>Lurie Children&#x27;s is proud to be recognized for a number of awards, accolades and achievements. </p>
+                        <a class="btn-new w-100 w-lg-auto d-none d-xl-inline-block" href="/en/who-we-are/facts-figures/awards-accolades/">LEARN MORE</a>
+                </div>
+            </div>
+                <div class="col-xl-7 pl-xl-5">
+                    
+<ul class="awards__list mt-4 mt-xl-0s"><li><a href="/en/who-we-are/facts-figures/us-news-world-report/" target="_blank" rel="noopener noreferrer">
+        <img src="https://luriechildrens.org/static/lurie/images/empty.png" data-src="https://luriechildrens.org/globalassets/media/badges/2024-2025/badge-childrenshospitals-11-specialties-400x515.png" class="lazyload" alt="" />
+</a>
+</li><li><a href="/en/who-we-are/facts-figures/awards-accolades/" target="_blank" rel="noopener noreferrer">
+        <img src="https://luriechildrens.org/static/lurie/images/empty.png" data-src="https://luriechildrens.org/globalassets/media/pages/who-we-are/newsweek-2024.png" class="lazyload" alt="" />
+</a>
+</li><li><a href="/en/for-healthcare-professionals/nursing/magnet-status/" target="_blank" rel="noopener noreferrer">
+        <img src="https://luriechildrens.org/static/lurie/images/empty.png" data-src="https://luriechildrens.org/contentassets/a4bf60a3316d49e1b65634e93e9816b1/magnet_recognition_logo-125.png" class="lazyload" alt="" />
+</a>
+</li><li><a href="/en/who-we-are/facts-figures/awards-accolades/" target="_blank" rel="noopener noreferrer">
+        <img src="https://luriechildrens.org/static/lurie/images/empty.png" data-src="https://luriechildrens.org/contentassets/b6575542a8f6446f94bf5008499e8b39/childrenssv_seal_cmyk.png" class="lazyload" alt="" />
+</a>
+</li><li><a href="http://www.aahrpp.org/" target="_blank" rel="noopener noreferrer">
+        <img src="https://luriechildrens.org/static/lurie/images/empty.png" data-src="https://luriechildrens.org/contentassets/30893a4d27424fdea4d61c880de77a47/achrpp-logo.png" class="lazyload" alt="" />
+</a>
+</li></ul>
+                </div>
+            <div class="col-12 d-xl-none">
+                    <a class="btn-new w-100 w-lg-auto" href="/en/who-we-are/facts-figures/awards-accolades/">LEARN MORE</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="container container--outer" id="">
+    
+
+
+
+    <div class="fifty-fifty">
+            <div class="fifty-fifty__media">
+                <img src="https://picsum.photos/519/472?width=519&amp;height=472" alt="" width="519" height="472" data-picture-tag-assembler>
+            </div>
+        <div class="fifty-fifty__dialog content-new">
+            <div class="fifty-fifty__body text-white">
+                    <h3>Sign Up for Our Newsletter</h3>
+                    <p>Get health tips from our pediatric experts, news about ground-breaking research, feel-good moments and ways to get involved with us delivered right to your inbox.</p>
+
+                <!-- Placeholder form, you should need to wire this up to anything -->
+                <!--// ********** Configuration ********** //-->
+<script>
+	window.madInterfaceConfig =
+	{
+		survey_id: "51717",
+		opt_ids: ["454173", "454164", "454165", "454172", "537383"],
+		tracking_id: "0uqodpmv",
+		token_endpoint: "https://cdn.go-luriechildrens.org/en-api/callAuthTokenRequest.php",
+		end_base_url: "https://us.engagingnetworks.app"
+	};
+</script>
+<!--// ********** Configuration ********** //-->
+
+<link rel="stylesheet" type="text/css" href="https://luriechildrens.org/static/lurie/vendor/luminate/jquery.madWindow.min.css">
+<link rel="stylesheet" type="text/css" href="https://acb0a5d73b67fccd4bbe-c2d8138f0ea10a18dd4c43ec3aa4240a.ssl.cf5.rackcdn.com/10100/lch-main_signup.css">
+
+<style>
+	.email_signup a, .email_signup a:hover, .email_signup a:focus, .email_signup a:active { color: #FFFFFF; }
+	.email_signup .errorMessage p { color: #E7727D; margin-bottom: .5em; margin-top: -.5em; }
+	.wait * { cursor: wait !important; }
+</style>
+
+<script type="text/javascript" src="https://luriechildrens.org/static/lurie/vendor/luminate/livevalidation.min.js"></script>
+<script type="text/javascript" src="https://luriechildrens.org/static/lurie/vendor/luminate/jquery.mailcheck.min.js"></script>
+
+<div class="email_signup hero">
+
+	<div id="survey_form" class="page_form widget_container">
+		<form id="ens_form">
+
+			<div id="ens_error" class="errorMessage">
+			</div>
+
+			<div class="formArea biographical">
+				<div class="row name">
+					<div class="col-12 col-md-6">
+						<label id="first_name_label" for="first_name"><strong>First Name</strong></label> <span class="required">*</span>
+						<input id="first_name" name="first_name" type="text" maxlength="50" autocomplete="given-name" value="" />
+					</div>
+					<div class="col-12 col-md-6">
+						<label id="last_name_label" for="last_name"><strong>Last Name</strong></label> <span class="required">*</span>
+						<input id="last_name" name="last_name" type="text" maxlength="50" autocomplete="family-name" value="" />
+					</div>
+				</div>
+				<div class="row address">
+					<div class="col-12 col-md-6">
+						<label id="email_address_label" for="email_address"><strong>Email Address</strong></label> <span class="required">*</span>
+						<input id="email_address" name="email_address" type="email" maxlength="50" autocomplete="email" value="" />
+					</div>
+					<div class="col-12 col-md-6">
+						<label id="zip_code_label" for="zip_code"><strong>ZIP Code</strong></label> <span class="required">*</span>
+						<input id="zip_code" name="zip_code" type="text" maxlength="50" autocomplete="postal-code" value="" />
+					</div>
+				</div>
+				<div class="row formButtons">
+					<div class="col-12">
+						<button class="btn-new btn-new-secondary w-100" type="submit">
+							<span class="btn-new__helper">Subscribe</span>
+							<span class="btn-new__icon">
+								<svg class="btn-new__icon-svg" version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" xml:space="preserve" width="16" height="16">
+									<style type="text/css">
+										.arrow-line { fill:none; stroke:#2D2D2D; stroke-width:1.5; stroke-linecap:round; stroke-miterlimit:10; }
+									</style>
+									<polyline class="arrow-line" points="8.4,4.5 12,8 8.4,11.5 "></polyline>
+									<line class="arrow-line" x1="12" y1="8" x2="4" y2="8"></line>
+									<circle class="arrow-line" cx="8" cy="8" r="7.2"></circle>
+								</svg>
+							</span>
+						</button>
+					</div>
+				</div>
+			</div>
+
+		</form>
+	</div>
+
+	<div id="survey_thanks" class="page_thanks widget_container" style="display: none;">
+		<div class="row">
+			<div class="col-12">
+				<p class="text-center"><strong>Success!</strong>&nbsp;You have signed up for this newsletter.</p>
+				<p class="text-center"><a href="#" onclick="LurieChildrens.DataCapture.ResetForm(); return false;">Go back</a> and subscribe another.</p>
+			</div>
+		</div>
+	</div>
+
+	<div id="survey_error" class="page_error widget_container" style="display: none;">
+		<div class="row">
+			<div class="col-12">
+				<p class="text-center"><strong>Error!</strong>&nbsp;There was an unexpected problem. If this error persists, please call 312.227.7500.</p>
+			</div>
+		</div>
+	</div>
+
+</div>
+
+            </div>
+        </div>
+    </div>
+</div></div>
+        </div>
+    </main>
+
+
+    
+
+<footer class="site-footer">
+        <div class="bg-light py-4 d-lg-none">
+            <div class="container container--outer text-center">
+                <span href="tel:make an appointment" style="font-size: 24px; line-height: normal; display:inline-block;">
+<h2 class="h3" style="text-align: center;"><a class="btn-new" href="/en/appointments/">MAKE AN APPOINTMENT</a></h2>
+<p style="text-align: center;">Lurie Children's has a number of options to help you make an appointment.&nbsp;</p>
+</span>
+            </div>
+        </div>
+    <div class="site-footer__body py-5">
+        <div class="container container--outer mt-5">
+            <div class="row">
+                <div class="col-md-12 col-xl-4 mb-5">
+                    <div class="row justify-content-center justify-content-xl-start">
+                        <div class="col-auto text-center text-xl-left">
+                            <img class="mb-3" alt="Ann and Robert H. Lurie Children's Hospital of Chicago" src="https://luriechildrens.org/static/lurie/images/logo-white-&#64;2x.png" width="270" height="54" loading="lazy">
+                            <address class="address mb-5 d-block">
+                                    <div class="address__line">225 E. Chicago Avenue</div>
+                                    <div class="address__line">Chicago, IL 60611</div>
+                            </address>
+                                    <a href="https://research.luriechildrens.org/en/" class="mr-3 mb-5 d-none d-lg-inline-block" target="_blank" rel="noopener noreferer">
+                                        <img alt="Stanley Manne Children&#x27;s Research Institute" src="https://luriechildrens.org/globalassets/assets/logos/manne-childrens-research-institute-white-t-m.png" width="211" height="33" loading="lazy">
+                                    </a>
+                                    <a href="https://www.feinberg.northwestern.edu/" class="mr-3 mb-5 d-none d-lg-inline-block" target="_blank" rel="noopener noreferer">
+                                        <img alt="" src="https://luriechildrens.org/globalassets/assets/logos/feinberg-logo.png" width="188" height="44" loading="lazy">
+                                    </a>
+                        </div>
+                    </div>
+                </div>
+
+                        <div class="col-md-3 col-lg-3 col-xl ">
+                            <div class="responsive-collapse">
+                                    <button class="responsive-collapse__toggle text-white text-uppercase font-weight-bold d-md-none" aria-controls="collapsibleFooterLinks-134236" aria-expanded="false" data-target="#collapsibleFooterLinks-134236" data-toggle="collapse" type="button">
+                                        I Want To
+                                    </button>
+
+                            <div class="responsive-collapse__collapse collapse d-md-block" id="collapsibleFooterLinks-134236">
+                                    <h2 class="h6 text-white mb-4 d-none d-md-block">
+                                        I Want To
+                                    </h2>
+                                    <ul class="list-common">
+                                            <li>
+                                                <a href="/en/appointments/">Make an Appointment</a>
+                                            </li>
+                                            <li>
+                                                <a href="/en/contact-us/">Contact Lurie Children&#x27;s</a>
+                                            </li>
+                                            <li>
+                                                <a href="/en/patients-visitors/billing-financial-assistance/pay-your-bill-online/">Pay My Bill</a>
+                                            </li>
+                                            <li>
+                                                <a href="/en/patients-visitors/billing-financial-assistance/understanding-hospital-charges/">Price Transparency</a>
+                                            </li>
+                                            <li>
+                                                <a href="/en/patients-visitors/medical-records/">Request Medical Records</a>
+                                            </li>
+                                            <li>
+                                                <a href="https://careers.luriechildrens.org/en/">Apply for a Job</a>
+                                            </li>
+                                            <li>
+                                                <a href="https://my.luriechildrens.org/page/43035/donate/1">Donate</a>
+                                            </li>
+                                            <li>
+                                                <a href="/en/ways-to-help/share-your-story/">Share a Story</a>
+                                            </li>
+
+                                    </ul>
+                            </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-lg-3 col-xl ">
+                            <div class="responsive-collapse">
+                                    <button class="responsive-collapse__toggle text-white text-uppercase font-weight-bold d-md-none" aria-controls="collapsibleFooterLinks-220" aria-expanded="false" data-target="#collapsibleFooterLinks-220" data-toggle="collapse" type="button">
+                                        Search
+                                    </button>
+
+                            <div class="responsive-collapse__collapse collapse d-md-block" id="collapsibleFooterLinks-220">
+                                    <h2 class="h6 text-white mb-4 d-none d-md-block">
+                                        Search
+                                    </h2>
+                                    <ul class="list-common">
+                                            <li>
+                                                <a href="/en/doctors/">Doctors</a>
+                                            </li>
+                                            <li>
+                                                <a href="/en/locations/">Locations</a>
+                                            </li>
+                                            <li>
+                                                <a href="/en/specialties-conditions/">Specialties <span class="ampersand">&amp; </span> Conditions</a>
+                                            </li>
+
+                                    </ul>
+                            </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-lg-3 col-xl ">
+                            <div class="responsive-collapse">
+                                    <button class="responsive-collapse__toggle text-white text-uppercase font-weight-bold d-md-none" aria-controls="collapsibleFooterLinks-224" aria-expanded="false" data-target="#collapsibleFooterLinks-224" data-toggle="collapse" type="button">
+                                        About Us
+                                    </button>
+
+                            <div class="responsive-collapse__collapse collapse d-md-block" id="collapsibleFooterLinks-224">
+                                    <h2 class="h6 text-white mb-4 d-none d-md-block">
+                                        About Us
+                                    </h2>
+                                    <ul class="list-common">
+                                            <li>
+                                                <a href="/en/who-we-are/">Who We Are</a>
+                                            </li>
+                                            <li>
+                                                <a href="/en/serving-the-community/">Serving the Community</a>
+                                            </li>
+                                            <li>
+                                                <a href="/en/news-stories/">News</a>
+                                            </li>
+                                            <li>
+                                                <a href="/en/blog/">Our Blog</a>
+                                            </li>
+                                            <li>
+                                                <a href="/en/podcasts/">Our Podcasts</a>
+                                            </li>
+                                            <li>
+                                                <a href="/en/contact-us/for-media/">For Media</a>
+                                            </li>
+                                            <li>
+                                                <a href="/en/privacy-legal-information/">Privacy Office</a>
+                                            </li>
+                                            <li>
+                                                <a href="/en/events/">Events</a>
+                                            </li>
+
+                                    </ul>
+                            </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-lg-3 col-xl-auto mb-5 ">
+                            <div class="responsive-collapse">
+                                    <button class="responsive-collapse__toggle text-white text-uppercase font-weight-bold d-md-none" aria-controls="collapsibleFooterLinks-226" aria-expanded="false" data-target="#collapsibleFooterLinks-226" data-toggle="collapse" type="button">
+                                        For Healthcare Professionals
+                                    </button>
+
+                            <div class="responsive-collapse__collapse collapse d-md-block" id="collapsibleFooterLinks-226">
+                                    <h2 class="h6 text-white mb-4 d-none d-md-block">
+                                        For Healthcare Professionals
+                                    </h2>
+                                    <ul class="list-common">
+                                            <li>
+                                                <a href="/en/for-healthcare-professionals/referrals/">Refer a Patient</a>
+                                            </li>
+                                            <li>
+                                                <a href="/en/for-healthcare-professionals/education/medical-education-training/">Medical Education <span class="ampersand">&amp; </span> Training</a>
+                                            </li>
+                                            <li>
+                                                <a href="/en/for-healthcare-professionals/education/continuing-medical-education-cme/">Continuing Medical Education (CME)</a>
+                                            </li>
+                                            <li>
+                                                <a href="/en/for-healthcare-professionals/nursing/">Nursing at Lurie Children&#x27;s</a>
+                                            </li>
+                                            <li>
+                                                <a href="/en/for-healthcare-professionals/advanced-practice-nursing/">Center for Advanced Practice</a>
+                                            </li>
+                                            <li>
+                                                <a href="/en/for-employees/">For Employees</a>
+                                            </li>
+
+                                    </ul>
+                            </div>
+                            </div>
+                        </div>
+
+                <div class="col-12 mb-5">
+                    <div class="text-center d-xl-flex align-items-xl-center justify-content-xl-end">
+                        <h3 class="h6 text-white d-xl-inline mb-xl-0 mr-xl-3"> Connect With Us</h3>
+                        
+<ul class="social-nav__list mb-0">
+        <li>
+<a href="https://www.facebook.com/luriechildrens" aria-label="facebook" target="_blank" rel="noopener noreferrer">
+        <span class="fa fa-facebook" aria-hidden="true"></span>
+</a>
+        </li>
+        <li>
+<a href="https://twitter.com/luriechildrens" aria-label="twitter" target="_blank" rel="noopener noreferrer">
+        <span class="fa fa-twitter" aria-hidden="true"></span>
+</a>
+        </li>
+        <li>
+<a href="https://www.youtube.com/user/LurieChildrens" aria-label="youtube" target="_blank" rel="noopener noreferrer">
+        <span class="fa fa-youtube" aria-hidden="true"></span>
+</a>
+        </li>
+        <li>
+<a href="https://www.instagram.com/luriechildrens/" aria-label="instagram" target="_blank" rel="noopener noreferrer">
+        <span class="fa fa-instagram" aria-hidden="true"></span>
+</a>
+        </li>
+        <li>
+<a href="https://www.linkedin.com/company/ann-and-robert-h-lurie-children&#x27;s-hospital-of-chicago" aria-label="linkedin" target="_blank" rel="noopener noreferrer">
+        <span class="fa fa-linkedin" aria-hidden="true"></span>
+</a>
+        </li>
+</ul>
+                        <div class="d-lg-none text-center mt-4">
+                                    <a href="https://research.luriechildrens.org/en/" class="d-block mb-5" target="_blank" rel="noopener noreferer">
+                                        <img alt="Stanley Manne Children&#x27;s Research Institute" src="https://luriechildrens.org/globalassets/assets/logos/manne-childrens-research-institute-white-t-m.png" width="166" height="26" loading="lazy">
+                                    </a>
+                                    <a href="https://www.feinberg.northwestern.edu/" class="d-block" target="_blank" rel="noopener noreferer">
+                                        <img alt="" src="https://luriechildrens.org/globalassets/assets/logos/feinberg-logo.png" width="140" height="43" loading="lazy">
+                                    </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-12 mb-4">
+                    <p class="small"><em>Lurie Children's provides healthcare regardless of race, color, religion (creed), sex, gender identity or expression, sexual orientation, national origin (ancestry), or disability.&nbsp;</em></p>
+<p class="small"><em>Lurie Children's complies with applicable federal civil rights laws and does not discriminate on the basis of race, color, national origin, religion, sex, sexual orientation, gender identity or expression, age, or disability.</em></p>
+<p class="small"><em>ATENCI&Oacute;N: Si habla espa&ntilde;ol, tiene a su disposici&oacute;n servicios gratuitos de asistencia ling&uuml;&iacute;stica. Llame al 1.312.227.4000 (Relay: 1.800.526.0844.)</em></p>
+<p class="small"><em>UWAGA: Jeżeli m&oacute;wisz po polsku, możesz skorzystać z bezpłatnej pomocy językowej.&nbsp; Zadzwoń pod numer 1.312.227.4000 (Relay: 1.800.526.0844.)</em></p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="site-footer__footer bg-white py-4">
+        <div class="container container--outer">
+            <div class="row">
+                <div class="col-lg-6">
+                    <p class="small">Copyright (c) 2024 Ann <span class="ampersand">&amp; </span> Robert H. Lurie Children&#x27;s Hospital of Chicago. All rights reserved. </p>
+                </div>
+                <div class="col-lg-6 text-lg-right">
+                    <p class="small">
+                            <a href="/en/privacy-legal-information/">Privacy <span class="ampersand">&amp; </span> Legal Information</a>
+                            <a href="/en/who-we-are/office-of-compliance-integrity/">Compliance</a>
+                            <a href="/en/patients-visitors/billing-financial-assistance/financial-assistance/">Financial Assistance</a>
+                            <a href="/en/for-employees/">For Employees</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+</div>
+{# <script id="view-markup-js" src="https://cdn.jsdelivr.net/gh/marshallcrosby/view-markup@1.6.5/dist/js/view-markup.min.js?modal-nav&exclude-attribute=data-jtn-anchor"></script> #}
+<script src="assets/js/picture-tag-assembler.js"></script>
+</body>
+</html>
