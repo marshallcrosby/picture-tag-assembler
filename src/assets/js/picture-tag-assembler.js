@@ -81,24 +81,84 @@ const pictureTagAssemblerStyles = /* css */`
     :root,
     :host {
         --pta-border-radius-base: 8px;
+        --pta-fs: 11px;
+        --pta-ff-primary: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji';
     }
 
+
     .picture-tag-assembler {
+        width: 200px;
         position: absolute;
         z-index: 2;
         background: white;
         padding: 15px;
-        font-size: 10px;
+        font-size: var(--pta-fs);
         border-radius: var(--pta-border-radius-base);
+        box-shadow: 0 19px 38px rgba(0, 0, 0, .4);
     }
 
     .picture-tag-assembler__submit {
-        padding: 6px 15px;
+        padding: 6px 20px;
         background: white;
         border-radius: var(--pta-border-radius-base);
         background-color: #e3e3e3;
         text-align: center;
         cursor: pointer;
+        height: 34px;
+        align-content: center;
+        font-family: var(--pta-ff-primary);
+        font-size: var(--pta-fs);
+        position: relative;
+        overflow: hidden;
+        line-height: 1.4;
+    }
+
+    .picture-tag-assembler__submit-loader {
+        display: block;
+        width: 100%;
+        height: 3px;
+        position: absolute;
+        background: rgba(0, 0, 0, .2);
+        border-radius: 6px;
+        overflow: hidden;
+        left: 0;
+        bottom: 0;
+
+        &:after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            right: 100%;
+            top: 0;
+            background: rgba(0, 0, 0, .5);
+            border-radius: 6px;
+            animation: pta_loader 2000ms infinite;
+        }
+    }
+
+    @keyframes pta_loader {
+        100% {
+            transform: translateX(200%);
+        }
+    }
+
+    .picture-tag-assembler__submit-generating {
+        display: none;
+    }
+
+    .js-picture-tag-assembler--in-progress {
+        .picture-tag-assembler__submit {
+            pointer-events: none;
+        }
+
+        .picture-tag-assembler__submit-generating {
+            display: block;
+        }
+
+        .picture-tag-assembler__submit-initial {
+            display: none;
+        }
     }
 
     .picture-tag-assembler__form-group {
@@ -108,11 +168,18 @@ const pictureTagAssemblerStyles = /* css */`
             display: block;
         }
 
+        & label {
+            font-family: var(--pta-ff-primary);
+        }
+
         & input {
             padding-left: 10px;
             padding-right: 10px;
             border-radius: calc(var(--pta-border-radius-base) / 1.5);
-            border: 1px solid #999;
+            border: 1px solid #999 !important;
+            font-family: var(--pta-ff-primary);
+            font-size: var(--pta-fs);
+            box-shadow: none;
         }
     }
 
@@ -130,6 +197,12 @@ const pictureTagAssemblerStyles = /* css */`
         & pre {
             font-size: 10px;
             margin-bottom: 0;
+        }
+    }
+
+    body:has(.js-picture-tag-assembler--in-progress) {
+        .picture-tag-assembler__modal {
+            display: none;
         }
     }
 `;
@@ -156,13 +229,19 @@ const infoDialogMarkup = /* html */`
     <div class="picture-tag-assembler__dialog">
         <div class="picture-tag-assembler__form-group">
             <label for="pictureTagAssemblerBreakpoints">Breakpoints</label>
-            <input id="pictureTagAssemblerBreakpoints" type="text" placeholder="Breakpoints" value="576, 768, 992, 1200, 1600">
+            <input id="pictureTagAssemblerBreakpoints" type="text" placeholder="Breakpoints" value="576, 768, 992, 1200, 1600, 1920, 2560, 3840">
         </div>
         <div class="picture-tag-assembler__form-group">
             <label for="pictureTagAssemblerImageService">Image service</label>
             <input id="pictureTagAssemblerImageService" type="text" placeholder="Enter URL" value="https://picsum.photos">
         </div>
-        <div class="picture-tag-assembler__submit" role="button" tabindex="0">Generate</div>
+        <div class="picture-tag-assembler__submit" role="button" tabindex="0">
+            <span class="picture-tag-assembler__submit-initial">Generate</span>
+            <span class="picture-tag-assembler__submit-generating">
+                <span class="picture-tag-assembler__visually-hidden">Generating &lt;picture&gt;</span>
+                <span class="picture-tag-assembler__submit-loader"></span>
+            </span>
+        </div>
     </div>
 `;
 
@@ -191,10 +270,11 @@ const buildAndPlaceDialog = (el, imageIndex) => {
 
     dialogPosition(el, dialogElement);
 
-    submitButton.addEventListener('click', () => {
+    submitButton.addEventListener('click', (e) => {
         const finalBreakpoints = dialogElement.querySelector('#pictureTagAssemblerBreakpoints').value;
         const finalService = dialogElement.querySelector('#pictureTagAssemblerImageService').value;
         pictureTagAssembler(`[data-pta-index="${imageIndex}"]`, finalBreakpoints, finalService);
+        e.target.closest('.picture-tag-assembler').classList.add('js-picture-tag-assembler--in-progress');
     });
 };
 
@@ -311,6 +391,7 @@ const pictureTagAssembler = (thisImage, breakpoints, service) => {
                     modalCodeElement.textContent = pictureHTMLText;
                     hljs.highlightElement(modalCodeElement);
                     hiddenIframeDiv.remove();
+                    document.querySelector('.js-picture-tag-assembler--in-progress').classList.remove('js-picture-tag-assembler--in-progress');
                 }
             }, index * 300);
         });
