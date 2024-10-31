@@ -9,16 +9,37 @@
 
 /*
     TODOS:
-    • Make dialog form element IDs unique
+    ✓ Make dialog form element IDs unique
     ✓ Remove attributes on generated picture > img element
-    • Bring in beautify.js and highlight.js javascript and css
+    • Bring in beautify.js and highlight.js javascript and css if needed
     • Create and fire a modal with beautified/highlighted picture tag
     • Style '.picture-tag-assembler' panel
     ✓ Fix media attribute logic
-    ✓ Figure out if iframe scrollbar is causing issues with returned image sizes
-    • Figure out if lazy load is needed and it so re add the attribute
+    • Figure out if iframe scrollbar is causing issues with returned image sizes
+    • Figure out if lazy load is needed and if so re-add the attribute
     • URL params like default breakpoints, and photo service
+    • Keyboard focus out of dialog closes it
+    • Use image url as Service url setting
+    • Cache input settings
 */
+
+const allImageTags = document.querySelectorAll('img');
+let ptaIndex = 0;
+
+for (const imageTag of allImageTags) {
+    imageTag.setAttribute('data-pta-index', ptaIndex);
+    ptaIndex++;
+}
+
+let ptaParams;
+const pictureTagAssemblerScriptTag = document.querySelectorAll('script[src*="picture-tag-assembler."]')[0];
+if (pictureTagAssemblerScriptTag) {
+    const pictureTagAssemblerURLParam = new URLSearchParams(pictureTagAssemblerScriptTag.getAttribute('src').split('?')[1]);
+    
+    ptaParams = {
+        defaultBreakpoints: pictureTagAssemblerURLParam.get('default-breakpoints')
+    }
+}
 
 // Highlight css and js CDN. Project repo: https://github.com/highlightjs/highlight.js/
 const highlightVersionNumb = {
@@ -80,28 +101,51 @@ function loadExternalCss(url, callback) {
 const pictureTagAssemblerStyles = /* css */`
     :root,
     :host {
+        --pta-color-primary: #1e2127;
         --pta-border-radius-base: 8px;
         --pta-fs: 11px;
         --pta-ff-primary: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji';
     }
 
+    .js-pta-p-key-pressed *:not(img) {
+        pointer-events: none;
+
+        img {
+            pointer-events: auto;
+        }
+    }
 
     .picture-tag-assembler {
         width: 200px;
         position: absolute;
         z-index: 2;
         background: white;
-        padding: 15px;
+        padding: 12px;
         font-size: var(--pta-fs);
         border-radius: var(--pta-border-radius-base);
         box-shadow: 0 19px 38px rgba(0, 0, 0, .4);
+        outline: none !important;
+    }
+
+    .picture-tag-assembler__title {
+        position: relative;
+        z-index: 0;
+        overflow: hidden;
+        padding-right: 40px;
+        white-space: nowrap;
+        font-family: var(--pta-ff-primary);
+        font-size: 1.16666em;
+        font-weight: 600;
+
+        margin-bottom: 10px;
     }
 
     .picture-tag-assembler__submit {
         padding: 6px 20px;
         background: white;
-        border-radius: var(--pta-border-radius-base);
-        background-color: #e3e3e3;
+        border-radius: 30px;
+        background-color: #343944;
+        border: 1px solid #343944;
         text-align: center;
         cursor: pointer;
         height: 34px;
@@ -110,7 +154,9 @@ const pictureTagAssemblerStyles = /* css */`
         font-size: var(--pta-fs);
         position: relative;
         overflow: hidden;
-        line-height: 1.4;
+        line-height: 1.3;
+        font-weight: 400;
+        color: white;
     }
 
     .picture-tag-assembler__submit-loader {
@@ -118,7 +164,7 @@ const pictureTagAssemblerStyles = /* css */`
         width: 100%;
         height: 3px;
         position: absolute;
-        background: rgba(0, 0, 0, .2);
+        background: rgba(255, 255, 255, .2);
         border-radius: 6px;
         overflow: hidden;
         left: 0;
@@ -131,7 +177,7 @@ const pictureTagAssemblerStyles = /* css */`
             height: 100%;
             right: 100%;
             top: 0;
-            background: rgba(0, 0, 0, .5);
+            background: rgba(255, 255, 255, .2);
             border-radius: 6px;
             animation: pta_loader 2000ms infinite;
         }
@@ -147,7 +193,7 @@ const pictureTagAssemblerStyles = /* css */`
         display: none;
     }
 
-    .js-picture-tag-assembler--in-progress {
+    .js-pta--in-progress {
         .picture-tag-assembler__submit {
             pointer-events: none;
         }
@@ -172,14 +218,20 @@ const pictureTagAssemblerStyles = /* css */`
             font-family: var(--pta-ff-primary);
         }
 
+        & textarea,
         & input {
-            padding-left: 10px;
-            padding-right: 10px;
+            padding-left: 8px;
+            padding-right: 8px;
             border-radius: calc(var(--pta-border-radius-base) / 1.5);
             border: 1px solid #999 !important;
             font-family: var(--pta-ff-primary);
             font-size: var(--pta-fs);
             box-shadow: none;
+            width: 100%;
+        }
+
+        & p {
+            margin-top: 2px;
         }
     }
 
@@ -200,11 +252,32 @@ const pictureTagAssemblerStyles = /* css */`
         }
     }
 
-    body:has(.js-picture-tag-assembler--in-progress) {
+    body:has(.js-pta--in-progress) {
         .picture-tag-assembler__modal {
             display: none;
         }
     }
+
+    .picture-tag-assembler-iframe-container {
+        top: 0;
+        left: 0;
+        z-index: 100000;
+        position: fixed;
+        width: 100%;
+        height: 100vh;
+        border: 10px solid red;
+        opacity: .75;
+        
+        > * {
+            filter: grayscale(1);
+        }
+    }
+
+    /*.picture-tag-assembler-iframe-container {
+        width: 0;
+        height: 0;
+        overflow: hidden;
+    }*/
 `;
 
 const styleTag = document.createElement('style');
@@ -224,15 +297,18 @@ modalElement.classList.add('picture-tag-assembler__modal');
 modalElement.innerHTML = infoModalMarkup;
 document.body.appendChild(modalElement);
 const modalCodeElement = modalElement.querySelector('.picture-tag-assembler__modal code');
+const ptaBreakpoints = (ptaParams.defaultBreakpoints) ? ptaParams.defaultBreakpoints.replace(' ', '').split(',').join(', ') : '576,  768, 992, 1200, 1600';
 
 const infoDialogMarkup = /* html */`
     <div class="picture-tag-assembler__dialog">
+        <div class="picture-tag-assembler__title">Picture Tag Assembler</div>
         <div class="picture-tag-assembler__form-group">
-            <label for="pictureTagAssemblerBreakpoints">Breakpoints</label>
-            <input id="pictureTagAssemblerBreakpoints" type="text" placeholder="Breakpoints" value="576, 768, 992, 1200, 1600, 1920, 2560, 3840">
+            <label for="pictureTagAssemblerBreakpoints"><strong>Breakpoints:</strong></label>
+            <textarea id="pictureTagAssemblerBreakpoints" placeholder="Breakpoints">${ptaBreakpoints}</textarea>
+            <p>Comma separated numbers, px only.</p>
         </div>
         <div class="picture-tag-assembler__form-group">
-            <label for="pictureTagAssemblerImageService">Image service</label>
+            <label for="pictureTagAssemblerImageService"><strong>Image service:</strong></label>
             <input id="pictureTagAssemblerImageService" type="text" placeholder="Enter URL" value="https://picsum.photos">
         </div>
         <div class="picture-tag-assembler__submit" role="button" tabindex="0">
@@ -245,44 +321,40 @@ const infoDialogMarkup = /* html */`
     </div>
 `;
 
-const allImageTags = document.querySelectorAll('[data-picture-tag-assembler]');
-let ptaIndex = 0;
+const positionDialogTopMousePointer = (dialogEl, event) => {
+    const mouseX = event.clientX;
+    const mouseY = event.clientY;
 
-for (const imageTag of allImageTags) {
-    imageTag.setAttribute('data-pta-index', ptaIndex);
-    ptaIndex++;
-}
+    const pointerX = mouseX + window.scrollX;
+    const pointerY = mouseY + window.scrollY;
 
-const dialogPosition = (img, dialogEl) => {
-    const imageRect = img.getBoundingClientRect();
-    dialogEl.style.left = `${imageRect.left + window.scrollX + 25}px`;
-    dialogEl.style.top = `${imageRect.top + window.scrollY + 25}px`;
+    dialogEl.style.left = `${pointerX - 10}px`;
+    dialogEl.style.top = `${pointerY - 10}px`;
 };
 
-const buildAndPlaceDialog = (el, imageIndex) => {
+const buildAndPlaceDialog = (el, imageIndex, event) => {
     const dialogElement = document.createElement('div');
+    dialogElement.setAttribute('tabindex', '-1');
     dialogElement.classList.add('picture-tag-assembler');
     dialogElement.innerHTML = infoDialogMarkup;
     document.body.appendChild(dialogElement);
 
     const submitButton = dialogElement.querySelector('.picture-tag-assembler__submit');
     submitButton.setAttribute('data-pta-associated-index', imageIndex);
-
-    dialogPosition(el, dialogElement);
-
+    
+    positionDialogTopMousePointer(dialogElement, event);
+    
+    dialogElement.focus();
+    
     submitButton.addEventListener('click', (e) => {
         const finalBreakpoints = dialogElement.querySelector('#pictureTagAssemblerBreakpoints').value;
         const finalService = dialogElement.querySelector('#pictureTagAssemblerImageService').value;
+        
         pictureTagAssembler(`[data-pta-index="${imageIndex}"]`, finalBreakpoints, finalService);
-        e.target.closest('.picture-tag-assembler').classList.add('js-picture-tag-assembler--in-progress');
+        
+        e.target.closest('.picture-tag-assembler').classList.add('js-pta--in-progress');
     });
 };
-
-window.addEventListener('load', () => {
-    allImageTags.forEach((image, index) => {
-        buildAndPlaceDialog(image, index);
-    });
-});
 
 let resizeTimeout;
 window.addEventListener('resize', () => {
@@ -293,7 +365,7 @@ window.addEventListener('resize', () => {
         pictureTagAssemblerPanel.forEach(item => {
             const imageToPositionToIndex = item.querySelector('.picture-tag-assembler__submit').getAttribute('data-pta-associated-index');
             const imageToPositionToElement = document.querySelector(`[data-pta-index="${imageToPositionToIndex}"]`);
-            dialogPosition(imageToPositionToElement, item);
+            positionDialogTopMousePointer(imageToPositionToElement, item);
         });
     }, 200);
 });
@@ -305,9 +377,7 @@ const pictureTagAssembler = (thisImage, breakpoints, service) => {
     `;
 
     const hiddenIframeDiv = document.createElement('div');
-    hiddenIframeDiv.style.width = '0';
-    hiddenIframeDiv.style.height = '0';
-    hiddenIframeDiv.style.overflow = 'hidden';
+    hiddenIframeDiv.classList.add('picture-tag-assembler-iframe-container')
     hiddenIframeDiv.innerHTML = iframeMarkup;
 
     document.body.appendChild(hiddenIframeDiv);    
@@ -345,7 +415,11 @@ const pictureTagAssembler = (thisImage, breakpoints, service) => {
             
             setTimeout(() => {
                 iframe.setAttribute('width', breakpointNum - 1 + 'px');
-                const { dWidth: imageWidth, dHeight: imageHeight, imageTag } = getImageInfo(iframe, thisImage);
+                const {
+                    dWidth: imageWidth,
+                    dHeight: imageHeight,
+                    imageTag
+                } = getImageInfo(iframe, thisImage);
                 const serviceURL = `${imageService}/${imageWidth}/${imageHeight}?width=${imageWidth}&height=${imageHeight}`;
     
                 // Generate <picture> tag if dWidth > 0 and hasn't been created
@@ -391,14 +465,63 @@ const pictureTagAssembler = (thisImage, breakpoints, service) => {
                     modalCodeElement.textContent = pictureHTMLText;
                     hljs.highlightElement(modalCodeElement);
                     hiddenIframeDiv.remove();
-                    document.querySelector('.js-picture-tag-assembler--in-progress').classList.remove('js-picture-tag-assembler--in-progress');
+                    document.querySelector('.js-pta--in-progress').classList.remove('js-pta--in-progress');
+
+                    const currentDialog = document.querySelector('.picture-tag-assembler');
+                    
+                    if (currentDialog) {
+                        currentDialog.remove();
+                    }
                 }
-            }, index * 300);
+            }, index * 600);
         });
     };
-    
 
     iframe.addEventListener('load', () => {
         runThroughViewportSizes(iframe);
     });
 }
+
+let isPKeyPressed = false;
+document.addEventListener('keydown', (event) => {
+    if (event.key === 'p' || event.key === 'P') {
+        isPKeyPressed = true;
+        document.body.classList.add('js-pta-p-key-pressed');
+    }
+});
+
+document.addEventListener('keyup', (event) => {
+    if (event.key === 'p' || event.key === 'P') {
+        isPKeyPressed = false;
+        document.body.classList.remove('js-pta-p-key-pressed');
+    }
+});
+
+document.addEventListener('click', (event) => {
+    const currentDialog = document.querySelector('.picture-tag-assembler');
+    
+    if (isPKeyPressed) {
+        event.preventDefault();
+        event.stopPropagation();
+
+        
+        if (currentDialog) {
+            currentDialog.remove();
+        }
+        
+        const x = event.clientX;
+        const y = event.clientY;
+        const targetElement = document.elementFromPoint(x, y);
+
+        if (targetElement && targetElement.tagName === 'IMG') {
+            const targetIndex = event.target.getAttribute('data-pta-index');
+            buildAndPlaceDialog(event.target, targetIndex, event);
+        }
+    };
+
+    if (!event.target.closest('.picture-tag-assembler')) {
+        if (currentDialog) {
+            currentDialog.remove();
+        }
+    };
+});
