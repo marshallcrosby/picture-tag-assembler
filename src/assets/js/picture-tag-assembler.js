@@ -37,7 +37,8 @@ if (pictureTagAssemblerScriptTag) {
     const pictureTagAssemblerURLParam = new URLSearchParams(pictureTagAssemblerScriptTag.getAttribute('src').split('?')[1]);
     
     ptaParams = {
-        defaultBreakpoints: pictureTagAssemblerURLParam.get('default-breakpoints')
+        defaultBreakpoints: pictureTagAssemblerURLParam.get('default-breakpoints'),
+        defaultImageService: pictureTagAssemblerURLParam.get('placeholder-service')
     }
 }
 
@@ -101,10 +102,15 @@ function loadExternalCss(url, callback) {
 const pictureTagAssemblerStyles = /* css */`
     :root,
     :host {
-        --pta-color-primary: #1e2127;
+        --pta-outer-pad: 15px;
+        --pta-ui-bg-color: #1e2127;
+        --pta-ui-text-color: #e0e0e0;
+        --pta-ui-input-color: #131519;
+        --pta-ui-input-height: 30px;
         --pta-border-radius-base: 8px;
         --pta-fs: 11px;
         --pta-ff-primary: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji';
+        --pta-lh: 1.2;
     }
 
     .js-pta-p-key-pressed *:not(img) {
@@ -116,15 +122,20 @@ const pictureTagAssemblerStyles = /* css */`
     }
 
     .picture-tag-assembler {
-        width: 200px;
+        width: 220px;
         position: absolute;
         z-index: 2;
-        background: white;
-        padding: 12px;
+        background: var(--pta-ui-bg-color);
         font-size: var(--pta-fs);
         border-radius: var(--pta-border-radius-base);
         box-shadow: 0 19px 38px rgba(0, 0, 0, .4);
         outline: none !important;
+
+        * {
+            font-family: var(--pta-ff-primary) !important;
+            font-size: var(--pta-fs);
+            color: var(--pta-ui-text-color);
+        }
     }
 
     .picture-tag-assembler__title {
@@ -133,39 +144,42 @@ const pictureTagAssemblerStyles = /* css */`
         overflow: hidden;
         padding-right: 40px;
         white-space: nowrap;
-        font-family: var(--pta-ff-primary);
         font-size: 1.16666em;
         font-weight: 600;
+        padding: 10px var(--pta-outer-pad);
+        border-bottom: 1px solid var(--pta-ui-input-color);
+    }
 
-        margin-bottom: 10px;
+    .picture-tag-assembler__body {
+        padding: 10px var(--pta-outer-pad) 5px var(--pta-outer-pad);
+    }
+
+    .picture-tag-assembler__footer {
+        padding: 10px var(--pta-outer-pad) var(--pta-outer-pad) var(--pta-outer-pad);
     }
 
     .picture-tag-assembler__submit {
         padding: 6px 20px;
-        background: white;
         border-radius: 30px;
         background-color: #343944;
-        border: 1px solid #343944;
         text-align: center;
         cursor: pointer;
-        height: 34px;
+        height: var(--pta-ui-input-height);
         align-content: center;
-        font-family: var(--pta-ff-primary);
         font-size: var(--pta-fs);
         position: relative;
         overflow: hidden;
         line-height: 1.3;
         font-weight: 400;
-        color: white;
+        color: var(--pta-ui-text-color);
+        width: 115px;
     }
 
     .picture-tag-assembler__submit-loader {
         display: block;
         width: 100%;
-        height: 3px;
+        height: var(--pta-ui-input-height);
         position: absolute;
-        background: rgba(255, 255, 255, .2);
-        border-radius: 6px;
         overflow: hidden;
         left: 0;
         bottom: 0;
@@ -178,8 +192,8 @@ const pictureTagAssemblerStyles = /* css */`
             right: 100%;
             top: 0;
             background: rgba(255, 255, 255, .2);
-            border-radius: 6px;
-            animation: pta_loader 2000ms infinite;
+            border-radius: 30px;
+            animation: pta_loader 1800ms infinite;
         }
     }
 
@@ -208,31 +222,51 @@ const pictureTagAssemblerStyles = /* css */`
     }
 
     .picture-tag-assembler__form-group {
-        margin-bottom: 10px;
+        &:not(:last-child) {
+            margin-bottom: 20px;
+        }
 
         > * {
             display: block;
         }
 
         & label {
-            font-family: var(--pta-ff-primary);
+            line-height: var(--pta-lh);
         }
 
-        & textarea,
-        & input {
+        & input[type="text"] {
             padding-left: 8px;
-            padding-right: 8px;
+            padding-right: 0;
             border-radius: calc(var(--pta-border-radius-base) / 1.5);
             border: 1px solid #999 !important;
-            font-family: var(--pta-ff-primary);
             font-size: var(--pta-fs);
             box-shadow: none;
-            width: 100%;
-        }
+            width: calc(100% + 4px);
+            margin-left: -2px;
+            line-height: var(--pta-lh);
+            background-color: var(--pta-ui-input-color);
+            color: var(--pta-ui-text-color);
+            border: 0 !important;
+            height: var(--pta-ui-input-height);
+            position: relative;
 
-        & p {
-            margin-top: 2px;
+            /* &:after {
+                content: '';
+                position: absolute;
+                width: 40px;
+                height: 100%;
+                top: 0;
+                right: 0;
+                background-color: red;
+            } */
         }
+    }
+    
+    .picture-tag-assembler__small {
+        margin-top: 4px;
+        font-size: 9px;
+        line-height: var(--pta-lh);
+        opacity: .75;
     }
 
     .picture-tag-assembler__modal {
@@ -244,6 +278,11 @@ const pictureTagAssemblerStyles = /* css */`
         border-radius: var(--pta-border-radius-base);
         padding: 0;
         overflow: hidden;
+
+        & pre {
+            padding: 0;
+            background-color: transparent;
+        }
 
         & code,
         & pre {
@@ -258,26 +297,31 @@ const pictureTagAssemblerStyles = /* css */`
         }
     }
 
-    .picture-tag-assembler-iframe-container {
+    .picture-tag-assembler__footer {
+        position: relative;
+    }
+
+    /* .picture-tag-assembler-iframe-container {
         top: 0;
         left: 0;
         z-index: 100000;
-        position: fixed;
+        position: absolute;
         width: 100%;
         height: 100vh;
         border: 10px solid red;
         opacity: .75;
+        transform: scale(.1, .1);
         
         > * {
             filter: grayscale(1);
         }
-    }
+    } */
 
-    /*.picture-tag-assembler-iframe-container {
+    .picture-tag-assembler-iframe-container {
         width: 0;
         height: 0;
         overflow: hidden;
-    }*/
+    }
 `;
 
 const styleTag = document.createElement('style');
@@ -298,25 +342,33 @@ modalElement.innerHTML = infoModalMarkup;
 document.body.appendChild(modalElement);
 const modalCodeElement = modalElement.querySelector('.picture-tag-assembler__modal code');
 const ptaBreakpoints = (ptaParams.defaultBreakpoints) ? ptaParams.defaultBreakpoints.replace(' ', '').split(',').join(', ') : '576,  768, 992, 1200, 1600';
+let ptaImageService = (ptaParams.defaultImageService) ? ptaParams.defaultImageService : 'none';
+ptaImageService = (ptaImageService === 'none') ? 'none' : 'https://picsum.photos';
 
 const infoDialogMarkup = /* html */`
     <div class="picture-tag-assembler__dialog">
-        <div class="picture-tag-assembler__title">Picture Tag Assembler</div>
-        <div class="picture-tag-assembler__form-group">
-            <label for="pictureTagAssemblerBreakpoints"><strong>Breakpoints:</strong></label>
-            <textarea id="pictureTagAssemblerBreakpoints" placeholder="Breakpoints">${ptaBreakpoints}</textarea>
-            <p>Comma separated numbers, px only.</p>
+        <div class="picture-tag-assembler__header">
+            <div class="picture-tag-assembler__title">Picture Tag Assembler</div>
         </div>
-        <div class="picture-tag-assembler__form-group">
-            <label for="pictureTagAssemblerImageService"><strong>Image service:</strong></label>
-            <input id="pictureTagAssemblerImageService" type="text" placeholder="Enter URL" value="https://picsum.photos">
+        <div class="picture-tag-assembler__body">
+            <div class="picture-tag-assembler__form-group">
+                <label for="pictureTagAssemblerBreakpoints">Breakpoints (px):</label>
+                <input id="pictureTagAssemblerBreakpoints" type="text" placeholder="Breakpoints" value="${ptaBreakpoints}">
+                <div class="picture-tag-assembler__small">Comma separated numbers.</div>
+            </div>
+            <div class="picture-tag-assembler__form-group">
+                <label for="pictureTagAssemblerImageService">Image service:</label>
+                <input id="pictureTagAssemblerImageService" type="text" placeholder="Enter URL" value="${ptaImageService}">
+            </div>
         </div>
-        <div class="picture-tag-assembler__submit" role="button" tabindex="0">
-            <span class="picture-tag-assembler__submit-initial">Generate</span>
-            <span class="picture-tag-assembler__submit-generating">
-                <span class="picture-tag-assembler__visually-hidden">Generating &lt;picture&gt;</span>
-                <span class="picture-tag-assembler__submit-loader"></span>
-            </span>
+        <div class="picture-tag-assembler__footer">
+            <div class="picture-tag-assembler__submit" role="button" tabindex="0">
+                <span class="picture-tag-assembler__submit-initial">Generate</span>
+                <span class="picture-tag-assembler__submit-generating">
+                    <span class="picture-tag-assembler__visually-hidden">Generating</span>
+                    <span class="picture-tag-assembler__submit-loader"></span>
+                </span>
+            </div>
         </div>
     </div>
 `;
@@ -380,7 +432,8 @@ const pictureTagAssembler = (thisImage, breakpoints, service) => {
     hiddenIframeDiv.classList.add('picture-tag-assembler-iframe-container')
     hiddenIframeDiv.innerHTML = iframeMarkup;
 
-    document.body.appendChild(hiddenIframeDiv);    
+    // document.querySelector('.picture-tag-assembler__footer').appendChild(hiddenIframeDiv);   
+    document.body.appendChild(hiddenIframeDiv);   
 
     const iframe = document.getElementById('pictureTagAssemblerIframe');
     const imageService = service;
@@ -409,6 +462,7 @@ const pictureTagAssembler = (thisImage, breakpoints, service) => {
     const runThroughViewportSizes = (iframe) => {
         let pictureTagCreated = false;
         let lastSrcset = '';
+        const selectedImage = document.querySelector(thisImage);
     
         viewportSizes.forEach((size, index) => {
             const breakpointNum = parseInt(size);
@@ -420,7 +474,11 @@ const pictureTagAssembler = (thisImage, breakpoints, service) => {
                     dHeight: imageHeight,
                     imageTag
                 } = getImageInfo(iframe, thisImage);
-                const serviceURL = `${imageService}/${imageWidth}/${imageHeight}?width=${imageWidth}&height=${imageHeight}`;
+
+                console.log(selectedImage);
+
+                const imageSourceUrl = (imageService === 'none') ? selectedImage.src : imageService;
+                let serviceURL = (imageService === 'none') ? `${imageSourceUrl}?width=${imageWidth}&height=${imageHeight}` : `${imageSourceUrl}/${imageWidth}/${imageHeight}?width=${imageWidth}&height=${imageHeight}`;
     
                 // Generate <picture> tag if dWidth > 0 and hasn't been created
                 if (imageWidth > 0 && !pictureTagCreated) {
@@ -478,7 +536,33 @@ const pictureTagAssembler = (thisImage, breakpoints, service) => {
     };
 
     iframe.addEventListener('load', () => {
-        runThroughViewportSizes(iframe);
+        const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
+        const iframeImages = iframeDoc.querySelectorAll('img[loading="lazy"]');
+    
+        for (const imgLazy of iframeImages) {
+            imgLazy.removeAttribute('loading');
+        }
+    
+        const imageLoadPromises = Array.from(iframeImages).map(img => {
+            return new Promise(resolve => {
+                if (img.complete) {
+                    resolve();
+                } else {
+                    img.addEventListener('load', resolve);
+                    img.addEventListener('error', resolve);
+                }
+            });
+        });
+    
+        Promise.all(imageLoadPromises).then(() => {
+            console.log('All images loaded:', iframeImages.length);
+
+            for (const imgLazy of iframeImages) {
+                imgLazy.setAttribute('loading', 'lazy');
+            }
+
+            runThroughViewportSizes(iframe);
+        });
     });
 }
 
