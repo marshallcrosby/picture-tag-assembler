@@ -1,0 +1,55 @@
+{
+    "name": "picture-tag-assembler",
+    "version": "1.0.0",
+    "description": "Plugin that attempts to generate a picture tag from a single image tag.",
+    "main": "index.php",
+    "directories": {
+        "lib": "lib"
+    },
+    "scripts": {
+        "build": "gulp build",
+        "server": "gulp"
+    },
+    "author": "",
+    "license": "ISC",
+    "devDependencies": {
+        "gulp-connect": "^5.7.0",
+        "gulp-open": "^3.0.1",
+        "gulp-remove-empty-lines": "^0.1.0",
+        "minimist": "^1.2.8"
+    },
+    "dependencies": {
+        "autoprefixer": "^9.7.6",
+        "del": "^1.0.0",
+        "gulp": "^4.0.2",
+        "gulp-clean-css": "^4.3.0",
+        "gulp-concat": "^2.6.1",
+        "gulp-connect": "^5.7.0",
+        "gulp-dart-sass": "^1.0.2",
+        "gulp-eslint": "^6.0.0",
+        "gulp-htmlmin": "^5.0.1",
+        "gulp-include": "^2.4.1",
+        "gulp-inject-string": "^1.0.0",
+        "gulp-minify": "^3.0.0",
+        "gulp-open": "^3.0.1",
+        "gulp-postcss": "^8.0.0",
+        "gulp-replace": "^1.0.0",
+        "gulp-sourcemaps": "^2.6.5",
+        "gulp-twig": "^1.2.0",
+        "npm": "^7.5.4",
+        "node-fetch": "^3.3.2"
+    },
+    "eslintConfig": {
+        "extends": "eslint:recommended",
+        "rules": {
+            "camelcase": 1,
+            "eqeqeq": 1,
+            "no-undef": 0,
+            "no-unused-vars": 0
+        },
+        "env": {
+            "browser": true,
+            "jquery": true
+        }
+    }
+}

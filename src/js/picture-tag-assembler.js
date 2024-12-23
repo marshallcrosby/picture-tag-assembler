@@ -1,5 +1,5 @@
 /*!
-    * Picture Tag Assembler v0.0.2
+    * Picture Tag Assembler v0.0.3
     * Plugin that attempts to generate a picture tag from a single image tag.
     *
     * Copyright 2024 Marshall Crosby
@@ -11,19 +11,23 @@
     TODOS:
     ✓ Make dialog form element IDs unique
     ✓ Remove attributes on generated picture > img element
-    • Bring in beautify.js and highlight.js javascript and css if needed
-    • Create and fire a modal with beautified/highlighted picture tag
-    • Style '.picture-tag-assembler' panel
+    ✓ Bring in beautify.js and highlight.js javascript and css if needed
+    ✓ Create and fire a modal with beautified/highlighted picture tag
+    ✓ Style '.picture-tag-assembler' panel
     ✓ Fix media attribute logic
-    • Figure out if iframe scrollbar is causing issues with returned image sizes
-    • Figure out if lazy load is needed and if so re-add the attribute
-    • URL params like default breakpoints, and photo service
-    • Keyboard focus out of dialog closes it
+    ✓ Figure out if iframe scrollbar is causing issues with returned image sizes
+    ✓ Figure out if lazy load is needed and if so re-add the attribute
+    ✓ URL params like default breakpoints, and photo service
     • Use image url as Service url setting
     • Cache input settings
+    • Make modal accessible
+    • Add "Copied" to "Copy" button when clicked
+    • Add some UX to the "Test" button
+    • Keyboard traps
+    • Clean up/add comments
 */
 
-const queryParamTestString = 'https://example.com?breakpoints=576,768,992,1200,1600,1920,2560&placeholder-service=https://picsum.photos';
+const queryParamTestString = 'https://example.com?breakpoints=576&placeholder-service=https://picsum.photos';
 
 const allImageTags = document.querySelectorAll('img');
 let ptaIndex = 0;
@@ -37,350 +41,64 @@ window.addEventListener('load', () => {
     let ptaParams = {
         breakpoints: null,
         imageService: null,
-        pixelDensity: null
+        pixelDensity: null,
+        timeBetweenCheck: null
     }
 
-    //const pictureTagAssemblerScriptTag = document.querySelectorAll('script[src*="picture-tag-assembler."]')[0];
-    //if (pictureTagAssemblerScriptTag) {
-        //const pictureTagAssemblerURLParam = new URLSearchParams(pictureTagAssemblerScriptTag.getAttribute('src').split('?')[1]);
+    const pictureTagAssemblerScriptTag = document.querySelectorAll('script[src*="picture-tag-assembler."]')[0];
+    if (pictureTagAssemblerScriptTag) {
+        const pictureTagAssemblerURLParam = new URLSearchParams(pictureTagAssemblerScriptTag.getAttribute('src').split('?')[1]);
 
 
-        //ptaParams = {
-            //breakpoints: pictureTagAssemblerURLParam.get('breakpoints'),
-            //imageService: pictureTagAssemblerURLParam.get('placeholder-service'),
-            //pixelDensity: pictureTagAssemblerURLParam.get('pixel-density')
-        //}
-    //}
-
+        ptaParams = {
+            breakpoints: pictureTagAssemblerURLParam.get('breakpoints'),
+            imageService: pictureTagAssemblerURLParam.get('placeholder-service'),
+            pixelDensity: pictureTagAssemblerURLParam.get('pixel-density'),
+            timeBetweenCheck: pictureTagAssemblerURLParam.get('time-between-check')
+        }
+    }
 
     // const pictureTagAssemblerURLParam = new URLSearchParams(pictureTagAssemblerScriptTag.getAttribute('src').split('?')[1]);
-    const pictureTagAssemblerURLParam = new URLSearchParams(queryParamTestString.split('?')[1]);
+    // const pictureTagAssemblerURLParam = new URLSearchParams(queryParamTestString.split('?')[1]);
 
-    ptaParams = {
-        breakpoints: pictureTagAssemblerURLParam.get('breakpoints'),
-        imageService: pictureTagAssemblerURLParam.get('placeholder-service'),
-        pixelDensity: pictureTagAssemblerURLParam.get('pixel-density')
-    }
+    // ptaParams = {
+    //     breakpoints: pictureTagAssemblerURLParam.get('breakpoints'),
+    //     imageService: pictureTagAssemblerURLParam.get('placeholder-service'),
+    //     pixelDensity: pictureTagAssemblerURLParam.get('pixel-density'),
+    //     timeBetweenCheck: pictureTagAssemblerURLParam.get('time-between-check')
+    // }
 
-    // Highlight css and js CDN. Project repo: https://github.com/highlightjs/highlight.js/
-    const highlightVersionNumb = {
-        css: '10.7.2',
-        js: '11.3.1'
-    }
-    const themeCssDarkUrl = 'https://cdnjs.cloudflare.com/ajax/libs/highlight.js/' + highlightVersionNumb.css + '/styles/atom-one-dark.min.css';
-    const themeCssLightUrl = 'https://cdnjs.cloudflare.com/ajax/libs/highlight.js/' + highlightVersionNumb.css + '/styles/github.min.css';
+    /*
+        Import beautify-html
+     */
+    //=require ../../dist/temp/beautify-html.min.js
 
-    const highlightCssUrl = (localStorage.getItem('checkedThemeColor') === null || localStorage.getItem('checkedThemeColor') === 'dark') ? themeCssDarkUrl : themeCssLightUrl;
-    const highlightScriptUrl = 'https://cdnjs.cloudflare.com/ajax/libs/highlight.js/' + highlightVersionNumb.js + '/highlight.min.js';
+    /*
+        Import highlight
+     */
+    //=require ../../dist/temp/highlight.min.js
 
-    // Beautify HTML CDN. Project repo: https://github.com/beautifier/beautifier.io
-    const beautifyVersionNumb = '1.14.0';
-    const beautifyScriptUrl = 'https://cdnjs.cloudflare.com/ajax/libs/js-beautify/' + beautifyVersionNumb + '/beautify-html.min.js';
+    const pictureTagAssemblerStyles = `//=inject picture-tag-assembler.css`;
+    const ptaStyleTag = document.createElement('style');
+    
+    ptaStyleTag.textContent = pictureTagAssemblerStyles;
+    document.head.appendChild(ptaStyleTag);
+    
+    
+    const highlightCSS = `//=inject atom.css`;
+    const highlightStyleTag = document.createElement('style');
+    
+    highlightStyleTag.textContent = highlightCSS;
+    document.head.appendChild(highlightStyleTag);
 
-    // Load highlight js/css external assets
-    loadExternalCss(highlightCssUrl);
-
-    // Initialize everything after getting beautify-html script
-    loadExternalJs(beautifyScriptUrl, loadFinalJS);
-
-    function loadFinalJS() {
-        loadExternalJs(highlightScriptUrl, console.log('loaded'));
-    }
-
-    function loadExternalJs(scriptSrc, callback) {
-        const head = document.getElementsByTagName('head')[0];
-        const doesItExist = head.querySelectorAll(`[src="${scriptSrc}"]`)[0];
-
-        if (!doesItExist) {
-            const script = document.createElement('script');
-
-            script.src = scriptSrc;
-
-            head.appendChild(script);
-            script.onload = callback;
-        }
-    }
-
-    // Run after getting beautify-html/highlight.io external assets
-    function loadExternalCss(url, callback) {
-        const head = document.getElementsByTagName('head')[0];
-        const doesItExist = head.querySelectorAll(`[href="${url}"]`)[0];
-
-        if (!doesItExist) {
-            const link = document.createElement('link');
-
-            link.id = 'highlightJsCss';
-            link.rel = 'stylesheet';
-            link.href = url;
-
-            link.onreadystatechange = callback;
-            link.onload = callback;
-            head.appendChild(link);
-        }
-    }
-
-    const pictureTagAssemblerStyles = /* css */`
-        :root,
-        :host {
-            --pta-outer-pad: 15px;
-            --pta-ui-bg-color: #1e2127;
-            --pta-ui-text-color: #e0e0e0;
-            --pta-ui-input-color: #131519;
-            --pta-ui-input-height: 36px;
-            --pta-border-radius-base: 8px;
-            --pta-fs: 11px;
-            --pta-ff-primary: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji';
-            --pta-lh: 1.2;
-        }
-
-        .js-pta-p-key-pressed *:not(img) {
-            pointer-events: none;
-
-            img {
-                pointer-events: auto;
-            }
-        }
-
-        .picture-tag-assembler {
-            width: 220px;
-            position: absolute;
-            z-index: 100000;
-            background: var(--pta-ui-bg-color);
-            font-size: var(--pta-fs);
-            border-radius: var(--pta-border-radius-base);
-            box-shadow: 0 19px 38px rgba(0, 0, 0, .4);
-            outline: none !important;
-            box-sizing: border-box;
-
-
-            * {
-                font-family: var(--pta-ff-primary) !important;
-                font-size: var(--pta-fs);
-                color: var(--pta-ui-text-color);
-                box-sizing: border-box;
-            }
-        }
-
-        .picture-tag-assembler__title {
-            position: relative;
-            z-index: 0;
-            overflow: hidden;
-            padding-right: 40px;
-            white-space: nowrap;
-            font-size: 1.16666em;
-            font-weight: 600;
-            padding: 10px var(--pta-outer-pad);
-            border-bottom: 1px solid var(--pta-ui-input-color);
-        }
-
-        .picture-tag-assembler__body {
-            padding: 10px var(--pta-outer-pad) 5px var(--pta-outer-pad);
-        }
-
-        .picture-tag-assembler__footer {
-            padding: 10px var(--pta-outer-pad) var(--pta-outer-pad) var(--pta-outer-pad);
-        }
-
-        .picture-tag-assembler__submit,
-        .picture-tag-assembler__test-btn,
-        .picture-tag-assembler__copy-btn {
-            /*padding: 6px 20px;*/
-            border-radius: 30px;
-            background-color: #343944;
-            text-align: center;
-            cursor: pointer;
-            height: var(--pta-ui-input-height);
-            align-content: center;
-            font-family: var(--pta-ff-primary);
-            font-size: var(--pta-fs);
-            position: relative;
-            overflow: hidden;
-            line-height: 1.3;
-            font-weight: 400;
-            color: var(--pta-ui-text-color);
-            width: 115px;
-        }
-
-        .picture-tag-assembler__submit-loader {
-            display: block;
-            width: 100%;
-            height: var(--pta-ui-input-height);
-            position: absolute;
-            overflow: hidden;
-            left: 0;
-            bottom: 0;
-
-            &:after {
-                content: '';
-                position: absolute;
-                width: 100%;
-                height: 100%;
-                right: 100%;
-                top: 0;
-                background: rgba(255, 255, 255, .2);
-                border-radius: 30px;
-                animation: pta_loader 1800ms infinite;
-            }
-        }
-
-        @keyframes pta_loader {
-            100% {
-                transform: translateX(200%);
-            }
-        }
-
-        .picture-tag-assembler__submit-generating {
-            display: none;
-        }
-
-        .js-pta--in-progress {
-            .picture-tag-assembler__submit {
-                pointer-events: none;
-            }
-
-            .picture-tag-assembler__submit-generating {
-                display: block;
-            }
-
-            .picture-tag-assembler__submit-initial {
-                display: none;
-            }
-        }
-
-        .picture-tag-assembler__form-group {
-            &:not(:last-child) {
-                margin-bottom: 20px;
-            }
-
-            > * {
-                display: block;
-            }
-
-            & label {
-                line-height: var(--pta-lh);
-                margin-bottom: 5px;
-            }
-
-            & input[type="text"] {
-                padding-left: 8px;
-                padding-right: 0;
-                border-radius: calc(var(--pta-border-radius-base) / 1.5);
-                font-size: var(--pta-fs);
-                box-shadow: none;
-                width: calc(100% + 4px);
-                margin-left: -2px;
-                line-height: var(--pta-lh);
-                background-color: var(--pta-ui-input-color);
-                color: var(--pta-ui-text-color);
-                border: 0 !important;
-                height: var(--pta-ui-input-height);
-                position: relative;
-
-                /* &:after {
-                    content: '';
-                    position: absolute;
-                    width: 40px;
-                    height: 100%;
-                    top: 0;
-                    right: 0;
-                    background-color: red;
-                } */
-            }
-        }
-
-        .picture-tag-assembler__small {
-            margin-top: 4px;
-            font-size: 9px;
-            line-height: var(--pta-lh);
-            opacity: .75;
-        }
-
-        .picture-tag-assembler__modal {
-            display: none;
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate3d(-50%, -50%, 0);
-            z-index: 100001;
-            border-radius: var(--pta-border-radius-base);
-            padding: 0;
-            overflow: hidden;
-            background-color: var(--pta-ui-bg-color);
-
-            & pre {
-                padding: 0;
-                background-color: transparent;
-            }
-
-            & code,
-            & pre {
-                font-size: 10px;
-                margin-bottom: 0;
-            }
-        }
-
-        .picture-tag-assembler__modal-body {
-            overflow: auto;
-            max-width: 728px;
-            width: 100%;
-        }
-
-        body:has(.js-pta--in-progress) {
-            .picture-tag-assembler__modal {
-                display: none;
-            }
-        }
-
-        .picture-tag-assembler__footer {
-            position: relative;
-        }
-
-        /*picture-tag-assembler-iframe-container {
-            top: 0;
-            left: 0;
-            z-index: 100000;
-            position: absolute;
-            width: 100%;
-            height: 100vh;
-            border: 10px solid red;
-            opacity: .75;
-            transform: scale(.1, .1);
-
-            > * {
-                filter: grayscale(1);
-            }
-        }*/
-
-        .picture-tag-assembler-iframe-container {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 0;
-            height: 0;
-            overflow: hidden;
-        }
-    `;
-
-    const styleTag = document.createElement('style');
-    styleTag.textContent = pictureTagAssemblerStyles;
-    document.head.appendChild(styleTag);
-
-    const infoModalMarkup = /* html */`
-        <div class="picture-tag-assembler__modal-dialog">
-            <div class="picture-tag-assembler__modal-header">
-                <div class="picture-tag-assembler__test-btn" role="button">Test</div>
-                <div class="picture-tag-assembler__copy-btn" role="button">Copy</div>
-            </div>
-            <div class="picture-tag-assembler__modal-body">
-                <pre><code></code></pre>
-            </div>
-        </div>
-    `;
+    const infoModalMarkup = `//=inject _picture-tag-assembler-modal.html`;
 
     const modalElement = document.createElement('div');
     modalElement.classList.add('picture-tag-assembler__modal');
+    modalElement.setAttribute('aria-labelledby', 'pictureTagAssemblerTitle');
     modalElement.innerHTML = infoModalMarkup;
     document.body.appendChild(modalElement);
+    
     const modalCodeElement = modalElement.querySelector('.picture-tag-assembler__modal code');
     const ptaBreakpoints = (ptaParams.breakpoints) ? ptaParams.breakpoints.trim().replace(/\s+/g, '').split(',').join(', ') : '576,  768, 992, 1200, 1600';
     let ptaImageService = (ptaParams.imageService) ? ptaParams.imageService : 'none';
@@ -388,44 +106,13 @@ window.addEventListener('load', () => {
 
     let ptaPixelDensity = (ptaParams.pixelDensity) ? ptaParams.pixelDensity.trim().replace(/\s+/g, '').split(',').join(', ').split(',') : 'none';
 
-    const infoDialogMarkup = /* html */`
-        <div class="picture-tag-assembler__dialog">
-            <div class="picture-tag-assembler__header">
-                <div class="picture-tag-assembler__title">Picture Tag Assembler</div>
-            </div>
-            <div class="picture-tag-assembler__body">
-                <div class="picture-tag-assembler__form-group">
-                    <label for="pictureTagAssemblerBreakpoints">Breakpoints (px):</label>
-                    <input id="pictureTagAssemblerBreakpoints" type="text" placeholder="Breakpoints" value="${ptaBreakpoints}">
-                    <div class="picture-tag-assembler__small">Comma separated numbers.</div>
-                </div>
-                <div class="picture-tag-assembler__form-group">
-                    <label for="pictureTagAssemblerPixelDensity">Pixel density:</label>
-                    <input id="pictureTagAssemblerPixelDensity" type="text" placeholder="Enter URL" value="${ptaPixelDensity}">
-                    <div class="picture-tag-assembler__small">Comma separated numbers.</div>
-                </div>
-                <div class="picture-tag-assembler__form-group">
-                    <label for="pictureTagAssemblerImageService">Image service:</label>
-                    <input id="pictureTagAssemblerImageService" type="text" placeholder="Enter URL" value="${ptaImageService}">
-                </div>
-            </div>
-            <div class="picture-tag-assembler__footer">
-                <div class="picture-tag-assembler__submit" role="button" tabindex="0">
-                    <span class="picture-tag-assembler__submit-initial">Generate</span>
-                    <span class="picture-tag-assembler__submit-generating">
-                        <span class="picture-tag-assembler__visually-hidden">Generating</span>
-                        <span class="picture-tag-assembler__submit-loader"></span>
-                    </span>
-                </div>
-            </div>
-        </div>
-    `;
+    const infoDialogMarkup = `//=inject _picture-tag-assembler-dialog.html`;
 
     const positionDialogTopMousePointer = (dialogEl, event) => {
         const mouseX = event.clientX;
         const mouseY = event.clientY;
 
-        const pointerX = mouseX + window.scrollX;
+        const pointerX = mouseX - document.body.getBoundingClientRect().left;
         const pointerY = mouseY + window.scrollY;
 
         dialogEl.style.left = `${pointerX - 10}px`;
@@ -446,13 +133,13 @@ window.addEventListener('load', () => {
 
         dialogElement.focus();
 
-        submitButton.addEventListener('click', (e) => {
+        submitButton.addEventListener('click', (event) => {
             const finalBreakpoints = dialogElement.querySelector('#pictureTagAssemblerBreakpoints').value;
             const finalService = dialogElement.querySelector('#pictureTagAssemblerImageService').value;
 
             pictureTagAssembler(`[data-pta-index="${imageIndex}"]`, finalBreakpoints, finalService);
 
-            e.target.closest('.picture-tag-assembler').classList.add('js-pta--in-progress');
+            event.target.closest('.picture-tag-assembler').classList.add('js-pta--in-progress');
         });
     };
 
@@ -510,7 +197,10 @@ window.addEventListener('load', () => {
 
         const finalBreakpoints = breakpoints;
         const viewportSizes = finalBreakpoints.split(',');
+        const timeBetween = (ptaParams.timeBetweenCheck) ? ptaParams.timeBetweenCheck : 1000;
         let pictureTagGeneratedMarkup;
+
+        console.log(timeBetween);
 
         const runThroughViewportSizes = (iframe) => {
             let pictureTagCreated = false;
@@ -609,7 +299,7 @@ window.addEventListener('load', () => {
                             currentDialog.remove();
                         }
 
-                        document.querySelector('.picture-tag-assembler__test-btn').addEventListener('click', () => {
+                        document.querySelector('.picture-tag-assembler__modal-test-btn').addEventListener('click', () => {
                             let imageEl = document.querySelector(thisImage);
                             let replaceThisEl = (imageEl.closest('picture')) ? imageEl.closest('picture') : imageEl;
                             replaceThisEl.insertAdjacentHTML('afterend', pictureHTMLText);
@@ -617,8 +307,12 @@ window.addEventListener('load', () => {
                         });
 
                         modalElement.style.display = 'block';
+
+                        document.querySelector('.picture-tag-assembler__modal-close-btn').addEventListener('click', () => {
+                            modalElement.style.display = '';
+                        });
                     }
-                }, index * 1000);
+                }, index * timeBetween);
             });
         };
 
@@ -703,7 +397,7 @@ window.addEventListener('load', () => {
         };
     });
 
-    const ptaCopyButton = document.querySelector('.picture-tag-assembler__copy-btn');
+    const ptaCopyButton = document.querySelector('.picture-tag-assembler__modal-copy-btn');
     ptaCopyButton.addEventListener('click', () => {
         copyToClipboard(modalCodeElement);
     });
