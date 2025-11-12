@@ -93,7 +93,7 @@ gulp.task('clean-dist', async function (done) {
 
 // Move html to dist
 gulp.task('html', function (done) {
-    return gulp.src([`${roots.src}/index.html`])
+    return gulp.src([`${roots.src}/*.html`])
         .pipe(gulp.dest(`${roots.dist}`))
         .pipe(connect.reload());
 });

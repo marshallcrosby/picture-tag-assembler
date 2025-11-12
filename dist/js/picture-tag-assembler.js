@@ -58,16 +58,6 @@ window.addEventListener('load', () => {
         }
     }
 
-    // const pictureTagAssemblerURLParam = new URLSearchParams(pictureTagAssemblerScriptTag.getAttribute('src').split('?')[1]);
-    // const pictureTagAssemblerURLParam = new URLSearchParams(queryParamTestString.split('?')[1]);
-
-    // ptaParams = {
-    //     breakpoints: pictureTagAssemblerURLParam.get('breakpoints'),
-    //     imageService: pictureTagAssemblerURLParam.get('placeholder-service'),
-    //     pixelDensity: pictureTagAssemblerURLParam.get('pixel-density'),
-    //     timeBetweenCheck: pictureTagAssemblerURLParam.get('time-between-check')
-    // }
-
     /*
         Import beautify-html
      */
@@ -1226,7 +1216,7 @@ window.addEventListener('load', () => {
     return je}()
     ;"object"==typeof exports&&"undefined"!=typeof module&&(module.exports=hljs);
 
-    const pictureTagAssemblerStyles = `:host,:root{--pta-bg-color-ui:#1e2127;--pta-color-ui-text:#e0e0e0;--pta-color-ui-input:#131519;--pta-color-border-common:rgba(0, 0, 0, 0.175);--pta-spacing-base:15px;--pta-height-ui-input:30px;--pta-border-radius-base:12px;--pta-font-size:11.5px;--pta-ff-primary:-apple-system,BlinkMacSystemFont,"Segoe UI","Helvetica Neue",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji";--pta-line-height:1.2;--pta-height-header:50px;--pta-pre-edge-gradient:linear-gradient(90deg, rgba(30, 33, 39, 0) 0, rgba(30, 33, 39, .8) 50%);--pta-pre-bottom-gradient:linear-gradient(180deg, rgba(30, 33, 39, 0) 0, rgba(30, 33, 39, .8) 50%);--pta-box-shadow-deep:0 19px 38px rgba(0, 0, 0, .4)}.js-pta-p-key-pressed :not(img){pointer-events:none}.js-pta-p-key-pressed :not(img) img{pointer-events:auto}.picture-tag-assembler{position:absolute;z-index:100000;box-sizing:border-box;width:240px;border-radius:var(--pta-border-radius-base);outline:0!important;background:var(--pta-bg-color-ui);box-shadow:var(--pta-box-shadow-deep);font-size:var(--pta-font-size)}.picture-tag-assembler *{box-sizing:border-box;color:var(--pta-color-ui-text);font-family:var(--pta-ff-primary)!important;font-size:var(--pta-font-size)}.picture-tag-assembler__header{position:relative;z-index:0;overflow:hidden;align-content:center;height:var(--pta-height-header);padding:10px var(--pta-spacing-base);padding-right:40px;border-bottom:1px solid var(--pta-color-ui-input)}.picture-tag-assembler__title{white-space:nowrap;letter-spacing:.25px;font-size:1.16666em;font-weight:500}.picture-tag-assembler__body{padding:10px var(--pta-spacing-base) 5px var(--pta-spacing-base)}.picture-tag-assembler__footer{padding:10px var(--pta-spacing-base) var(--pta-spacing-base) var(--pta-spacing-base)}.picture-tag-assembler__modal-copy-btn,.picture-tag-assembler__modal-test-btn,.picture-tag-assembler__submit{position:relative;overflow:hidden;align-content:center;width:95px;height:var(--pta-height-ui-input);cursor:pointer;text-align:center;color:var(--pta-color-ui-text);border-radius:30px;background-color:#343944;font-family:var(--pta-ff-primary);font-size:var(--pta-font-size);font-weight:500;line-height:1}.picture-tag-assembler__modal-copy-btn:focus,.picture-tag-assembler__modal-copy-btn:hover,.picture-tag-assembler__modal-copy-btn[aria-expanded=true],.picture-tag-assembler__modal-test-btn:focus,.picture-tag-assembler__modal-test-btn:hover,.picture-tag-assembler__modal-test-btn[aria-expanded=true],.picture-tag-assembler__submit:focus,.picture-tag-assembler__submit:hover,.picture-tag-assembler__submit[aria-expanded=true]{opacity:.8;background-color:#343944}.picture-tag-assembler__submit-loader{position:absolute;bottom:0;left:0;display:block;overflow:hidden;width:100%;height:var(--pta-height-ui-input)}.picture-tag-assembler__submit-loader:after{position:absolute;top:0;right:100%;width:100%;height:100%;content:"";animation:pta_loader 1.8s infinite;border-radius:30px;background:rgba(255,255,255,.2)}@keyframes pta_loader{100%{transform:translateX(200%)}}.picture-tag-assembler__submit-generating{display:none}.js-pta--in-progress .picture-tag-assembler__submit{pointer-events:none}.js-pta--in-progress .picture-tag-assembler__submit-generating{display:block}.js-pta--in-progress .picture-tag-assembler__submit-initial{display:none}.picture-tag-assembler__form-group:not(:last-child){margin-bottom:20px}.picture-tag-assembler__form-group>*{display:block}.picture-tag-assembler__form-group label{margin-bottom:5px;line-height:var(--pta-line-height)}.picture-tag-assembler__form-group input[type=text]{position:relative;width:calc(100% + 4px);height:var(--pta-height-ui-input);margin-left:-2px;padding-right:0;padding-left:8px;color:var(--pta-color-ui-text);border:0!important;border-radius:calc(var(--pta-border-radius-base)/ 1.5);background-color:var(--pta-color-ui-input);box-shadow:none;font-size:var(--pta-font-size);line-height:var(--pta-line-height)}.picture-tag-assembler__small{margin-top:4px;opacity:.75;font-size:10px;line-height:var(--pta-line-height)}.picture-tag-assembler__modal{position:fixed;z-index:100001;top:50%;left:50%;display:none;overflow:hidden;padding:0;transform:translate3d(-50%,-50%,0);border-radius:var(--pta-border-radius-base);background-color:var(--pta-bg-color-ui);box-shadow:var(--pta-box-shadow-deep);font-size:var(--pta-font-size);font-weight:500}.picture-tag-assembler__modal pre{padding:0;border:0;background-color:transparent}.picture-tag-assembler__modal code,.picture-tag-assembler__modal pre{margin-bottom:0;font-size:12px}.picture-tag-assembler__modal pre{position:relative}.picture-tag-assembler__modal pre:after,.picture-tag-assembler__modal pre:before{position:absolute;top:0;right:0;width:var(--pta-spacing-base);height:100%;content:"";pointer-events:none;background:0 0;background:var(--pta-pre-edge-gradient)}.picture-tag-assembler__modal pre:after{top:auto;bottom:0;width:100%;height:var(--pta-spacing-base);background:var(--pta-pre-bottom-gradient)}.picture-tag-assembler__modal code{overflow-y:auto;width:100%;min-height:190px;max-height:490px;padding:var(--pta-spacing-base);white-space:pre;letter-spacing:normal;border:0;border-radius:0;outline:0!important;background-color:var(--pta-bg-color-ui);font-family:Menlo,Consolas,"DejaVu Sans Mono",monospace;font-size:1em;line-height:1.68}.picture-tag-assembler__modal-header{position:relative;display:flex;align-items:center;flex-direction:row;height:var(--pta-height-header);padding:5px var(--pta-spacing-base) 5px var(--pta-spacing-base);color:var(--pta-color-ui-text);border-bottom:1px solid var(--pta-color-border-common)}.picture-tag-assembler__modal-title{position:relative;z-index:0;overflow:hidden;padding-right:40px;white-space:nowrap;letter-spacing:.25px;font-family:var(--pta-ff-primary);font-size:1.16666em}.picture-tag-assembler__modal-close-btn{position:relative;z-index:2;display:inline-flex;align-items:center;justify-content:center;width:var(--pta-height-ui-input);min-width:var(--pta-height-ui-input);height:var(--pta-height-ui-input);margin-top:0;margin-right:-5px;margin-bottom:0;margin-left:auto;padding:0;cursor:pointer;text-align:center;color:var(--pta-color-ui-text);border:0;border-radius:60px;background-color:transparent;font-weight:500;line-height:0}.picture-tag-assembler__modal-close-btn svg{position:relative;width:auto;height:1em;pointer-events:none;font-size:1em}.picture-tag-assembler__modal-close-btn rect{fill:var(--pta-color-ui-text)}.picture-tag-assembler__modal-close-btn:focus,.picture-tag-assembler__modal-close-btn:hover{opacity:.8;background-color:#343944}.picture-tag-assembler__modal-body{position:relative;overflow:auto;width:100%;max-width:728px}.picture-tag-assembler__modal-controls{position:absolute;z-index:1;top:8px;right:10px;display:flex;margin-left:auto;padding:2px 0 2px 2px;border-radius:100px;background-color:var(--pta-bg-color-ui);font-size:1em}.picture-tag-assembler__modal-controls [role=button]{width:64px}.picture-tag-assembler__modal-controls [role=button]:first-child{margin-right:2px}body:has(.js-pta--in-progress) .picture-tag-assembler__modal{display:none}.picture-tag-assembler__footer{position:relative}.picture-tag-assembler-iframe-container{position:fixed;top:0;left:0;overflow:hidden;width:0;height:0}.picture-tag-assembler-styled-scrollbar{scrollbar-color:rgba(255,255,255,.95) transparent;scrollbar-width:thin}.picture-tag-assembler-styled-scrollbar::-webkit-scrollbar-corner{background-color:transparent}.picture-tag-assembler-styled-scrollbar::-webkit-scrollbar{width:5px;height:5px}.picture-tag-assembler-styled-scrollbar::-webkit-scrollbar-track{background-color:transparent}.picture-tag-assembler-styled-scrollbar::-webkit-scrollbar-thumb{outline:0;background-color:rgba(255,255,255,.95)}
+    const pictureTagAssemblerStyles = `:host,:root{--pta-bg-color-ui:#1e2127;--pta-color-ui-text:#e0e0e0;--pta-color-ui-input:#131519;--pta-color-button:#343944;--pta-color-border-common:rgba(0, 0, 0, 0.175);--pta-spacing-base:15px;--pta-height-ui-input:35px;--pta-border-radius-base:12px;--pta-font-size:11.5px;--pta-ff-primary:-apple-system,BlinkMacSystemFont,"Segoe UI","Helvetica Neue",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji";--pta-line-height:1.2;--pta-height-header:50px;--pta-pre-edge-gradient:linear-gradient(90deg, rgba(30, 33, 39, 0) 0, rgba(30, 33, 39, .8) 50%);--pta-pre-bottom-gradient:linear-gradient(180deg, rgba(30, 33, 39, 0) 0, rgba(30, 33, 39, .8) 50%);--pta-box-shadow-deep:0 19px 38px rgba(0, 0, 0, .4);--pta-dialog-width:260px}.js-pta-p-key-pressed :not(img){pointer-events:none}.js-pta-p-key-pressed :not(img) img{pointer-events:auto}.picture-tag-assembler{position:absolute;z-index:100000;box-sizing:border-box;width:var(--pta-dialog-width);border-radius:var(--pta-border-radius-base);outline:0!important;background:var(--pta-bg-color-ui);box-shadow:var(--pta-box-shadow-deep);font-size:var(--pta-font-size)}.picture-tag-assembler *{box-sizing:border-box;color:var(--pta-color-ui-text);font-family:var(--pta-ff-primary)!important;font-size:var(--pta-font-size)}.picture-tag-assembler__dialog{position:relative}.picture-tag-assembler__dialog .picture-tag-assembler__close-btn{position:absolute;right:11px;top:7px}.picture-tag-assembler__dialog .picture-tag-assembler__back-btn{margin-left:-9px;margin-right:2px}.picture-tag-assembler__header{position:relative;z-index:0;overflow:hidden;align-content:center;height:var(--pta-height-header);padding:10px var(--pta-spacing-base);padding-right:40px;border-bottom:1px solid var(--pta-color-ui-input);display:flex;align-items:center}.picture-tag-assembler__title{white-space:nowrap;letter-spacing:.25px;font-size:1.16666em;font-weight:500}.picture-tag-assembler__body{padding:10px var(--pta-spacing-base) 5px var(--pta-spacing-base)}.picture-tag-assembler__footer{padding:10px var(--pta-spacing-base) 5px var(--pta-spacing-base);display:flex;align-items:center}.picture-tag-assembler__modal-copy-btn,.picture-tag-assembler__modal-test-btn,.picture-tag-assembler__submit{position:relative;overflow:hidden;align-content:center;width:100%;height:var(--pta-height-ui-input);cursor:pointer;text-align:center;color:var(--pta-color-ui-text);border-radius:8px;background-color:var(--pta-color-button);font-family:var(--pta-ff-primary);font-size:var(--pta-font-size);font-weight:500;line-height:1}.picture-tag-assembler__modal-copy-btn:focus,.picture-tag-assembler__modal-copy-btn:hover,.picture-tag-assembler__modal-copy-btn[aria-expanded=true],.picture-tag-assembler__modal-test-btn:focus,.picture-tag-assembler__modal-test-btn:hover,.picture-tag-assembler__modal-test-btn[aria-expanded=true],.picture-tag-assembler__submit:focus,.picture-tag-assembler__submit:hover,.picture-tag-assembler__submit[aria-expanded=true]{opacity:.8;background-color:var(--pta-color-button)}.picture-tag-assembler__generate,.picture-tag-assembler__view-specs{cursor:pointer;text-align:left;line-height:1;border-radius:8px;padding:8px;margin-left:-8px;margin-right:-8px;display:flex;align-items:center}.picture-tag-assembler__generate:first-child,.picture-tag-assembler__view-specs:first-child{margin-bottom:5px}.picture-tag-assembler__generate:focus,.picture-tag-assembler__generate:hover,.picture-tag-assembler__view-specs:focus,.picture-tag-assembler__view-specs:hover{background-color:var(--pta-color-button)}.picture-tag-assembler__submit-loader{position:absolute;bottom:0;left:0;display:block;overflow:hidden;width:100%;height:var(--pta-height-ui-input)}.picture-tag-assembler__submit-loader:after{position:absolute;top:0;right:100%;width:100%;height:100%;content:"";animation:pta_loader 1.8s infinite;border-radius:30px;background:rgba(255,255,255,.2)}.picture-tag-assembler__pane{position:relative;padding-bottom:12px}.picture-tag-assembler__submit-progress{position:absolute;bottom:0;left:0;display:block;overflow:hidden;width:var(--submit-progress-width,0%);height:100%;background:rgba(255,255,255,.1);transition:width .3s ease-in-out}.picture-tag-assembler__progress{position:relative;display:flex;align-items:center;justify-content:center;width:48px;height:48px}.picture-tag-assembler__progress-svg{position:absolute;top:0;left:0;width:100%;height:100%}.picture-tag-assembler__progress-circle{transition:stroke-dashoffset 1s ease-in-out}.picture-tag-assembler__progress-percent{text-align:center;font-weight:700;font-size:12px}.picture-tag-assembler__analyzing{position:absolute;top:0;left:0;width:100%;height:100%;display:none;align-items:center;justify-content:center;flex-direction:column;pointer-events:none}.picture-tag-assembler__analyzing-text{margin-top:10px}@keyframes pta_loader{100%{transform:translateX(200%)}}.js-pta--in-progress .picture-tag-assembler__body,.js-pta--in-progress .picture-tag-assembler__footer{opacity:.4;filter:blur(5px);pointer-events:none}.js-pta--in-progress .picture-tag-assembler__analyzing{display:flex}.picture-tag-assembler__form-group:not(:last-child){margin-bottom:20px}.picture-tag-assembler__form-group>*{display:block}.picture-tag-assembler__form-group label{margin-bottom:5px;line-height:var(--pta-line-height)}.picture-tag-assembler__form-group input[type=text]{position:relative;width:calc(100% + 4px);height:var(--pta-height-ui-input);margin-left:-2px;padding-right:0;padding-left:8px;color:var(--pta-color-ui-text);border:0!important;border-radius:calc(var(--pta-border-radius-base)/ 1.5);background-color:var(--pta-color-ui-input);box-shadow:none;font-size:var(--pta-font-size);line-height:var(--pta-line-height)}.picture-tag-assembler__small{margin-top:4px;opacity:.75;font-size:10px;line-height:var(--pta-line-height)}.picture-tag-assembler__modal{position:fixed;z-index:100001;top:50%;left:50%;display:none;overflow:hidden;padding:0;transform:translate3d(-50%,-50%,0);border-radius:var(--pta-border-radius-base);background-color:var(--pta-bg-color-ui);box-shadow:var(--pta-box-shadow-deep);font-size:var(--pta-font-size);font-weight:500}.picture-tag-assembler__modal pre{padding:0;border:0;background-color:transparent}.picture-tag-assembler__modal code,.picture-tag-assembler__modal pre{margin-bottom:0;font-size:12px}.picture-tag-assembler__modal pre{position:relative}.picture-tag-assembler__modal pre:after,.picture-tag-assembler__modal pre:before{position:absolute;top:0;right:0;width:var(--pta-spacing-base);height:100%;content:"";pointer-events:none;background:0 0;background:var(--pta-pre-edge-gradient)}.picture-tag-assembler__modal pre:after{top:auto;bottom:0;width:100%;height:var(--pta-spacing-base);background:var(--pta-pre-bottom-gradient)}.picture-tag-assembler__modal code{overflow-y:auto;width:100%;min-height:190px;max-height:490px;padding:var(--pta-spacing-base);white-space:pre;letter-spacing:normal;border:0;border-radius:0;outline:0!important;background-color:var(--pta-bg-color-ui);font-family:Menlo,Consolas,"DejaVu Sans Mono",monospace;font-size:1em;line-height:1.68}.picture-tag-assembler__modal-header{position:relative;display:flex;align-items:center;flex-direction:row;height:var(--pta-height-header);padding:5px var(--pta-spacing-base) 5px var(--pta-spacing-base);color:var(--pta-color-ui-text);border-bottom:1px solid var(--pta-color-border-common)}.picture-tag-assembler__modal-title{position:relative;z-index:0;overflow:hidden;padding-right:40px;white-space:nowrap;letter-spacing:.25px;font-family:var(--pta-ff-primary);font-size:1.16666em}.picture-tag-assembler__back-btn,.picture-tag-assembler__close-btn{position:relative;z-index:2;display:inline-flex;align-items:center;justify-content:center;width:var(--pta-height-ui-input);min-width:var(--pta-height-ui-input);height:var(--pta-height-ui-input);margin-top:0;margin-right:-5px;margin-bottom:0;margin-left:auto;padding:0;cursor:pointer;text-align:center;color:var(--pta-color-ui-text);border:0;border-radius:60px;background-color:transparent;font-weight:500;line-height:0}.picture-tag-assembler__back-btn svg,.picture-tag-assembler__close-btn svg{position:relative;width:auto;height:1em;pointer-events:none;font-size:1em}.picture-tag-assembler__back-btn rect,.picture-tag-assembler__close-btn rect{fill:var(--pta-color-ui-text)}.picture-tag-assembler__back-btn:focus,.picture-tag-assembler__back-btn:hover,.picture-tag-assembler__close-btn:focus,.picture-tag-assembler__close-btn:hover{opacity:.8;background-color:#343944}.picture-tag-assembler__back-btn{font-size:13px}.picture-tag-assembler__back-btn polygon{fill:var(--pta-color-ui-text)}.picture-tag-assembler__modal-body{position:relative;overflow:auto;width:100%;max-width:728px}.picture-tag-assembler__modal-info{color:var(--pta-color-ui-text);padding:var(--pta-spacing-base);font-family:var(--pta-ff-primary);font-size:1em;line-height:1.5;font-weight:400}.picture-tag-assembler__modal-info hr{border-color:rgba(255,255,255,.1)}.picture-tag-assembler__modal-controls{position:absolute;z-index:1;top:8px;right:10px;display:flex;margin-left:auto;padding:2px 0 2px 2px;border-radius:100px;background-color:var(--pta-bg-color-ui);font-size:1em}.picture-tag-assembler__modal-controls [role=button]{width:64px}.picture-tag-assembler__modal-controls [role=button]:first-child{margin-right:2px}body:has(.js-pta--in-progress) .picture-tag-assembler__modal{display:none}.picture-tag-assembler__footer{position:relative}.picture-tag-assembler-iframe-container{position:fixed;top:0;left:0;overflow:hidden;width:0;height:0}.picture-tag-assembler-styled-scrollbar{scrollbar-color:rgba(255,255,255,.95) transparent;scrollbar-width:thin}.picture-tag-assembler-styled-scrollbar::-webkit-scrollbar-corner{background-color:transparent}.picture-tag-assembler-styled-scrollbar::-webkit-scrollbar{width:5px;height:5px}.picture-tag-assembler-styled-scrollbar::-webkit-scrollbar-track{background-color:transparent}.picture-tag-assembler-styled-scrollbar::-webkit-scrollbar-thumb{outline:0;background-color:rgba(255,255,255,.95)}
 `;
     const ptaStyleTag = document.createElement('style');
     
@@ -1240,22 +1230,37 @@ window.addEventListener('load', () => {
     highlightStyleTag.textContent = highlightCSS;
     document.head.appendChild(highlightStyleTag);
 
-    const infoModalMarkup = `<div class="picture-tag-assembler__modal-dialog"><div class="picture-tag-assembler__modal-header"><div class="picture-tag-assembler__modal-title" id="pictureTagAssemblerTitle">Picture Tag Assembler Results</div><div class="picture-tag-assembler__modal-close-btn" aria-label="Close" role="button" tabindex="0"><svg aria-hidden="true" x="0px" y="0px" width="15.6px" height="15.6px" viewBox="0 0 15.6 15.6" style="enable-background:new 0 0 15.6 15.6;"><rect x="6.8" y="-2.2" transform="matrix(0.7071 0.7071 -0.7071 0.7071 7.7782 -3.2218)" class="sty0" width="2" height="20"></rect><rect x="6.8" y="-2.2" transform="matrix(0.7071 -0.7071 0.7071 0.7071 -3.2218 7.7782)" class="sty0" width="2" height="20"></rect></svg></div></div><div class="picture-tag-assembler__modal-body"><div class="picture-tag-assembler__modal-controls"><div class="picture-tag-assembler__modal-copy-btn" role="button">Copy</div><div class="picture-tag-assembler__modal-test-btn" role="button">Test</div></div><pre><code class="picture-tag-assembler-styled-scrollbar"></code></pre></div></div>`;
+    const infoModalMarkup = `<div class="picture-tag-assembler__modal-dialog"><div class="picture-tag-assembler__modal-header"><div class="picture-tag-assembler__modal-title" id="pictureTagAssemblerTitle">Picture Tag Assembler Results</div><div class="picture-tag-assembler__close-btn" aria-label="Close" role="button" tabindex="0"><svg aria-hidden="true" x="0px" y="0px" width="15.6px" height="15.6px" viewBox="0 0 15.6 15.6" style="enable-background:new 0 0 15.6 15.6;"><rect x="6.8" y="-2.2" transform="matrix(0.7071 0.7071 -0.7071 0.7071 7.7782 -3.2218)" class="sty0" width="2" height="20"></rect><rect x="6.8" y="-2.2" transform="matrix(0.7071 -0.7071 0.7071 0.7071 -3.2218 7.7782)" class="sty0" width="2" height="20"></rect></svg></div></div><div class="picture-tag-assembler__modal-body"><div class="picture-tag-assembler__modal-controls"><div class="picture-tag-assembler__modal-copy-btn" role="button">Copy</div><div class="picture-tag-assembler__modal-test-btn" role="button">Test</div></div><pre><code class="picture-tag-assembler-styled-scrollbar"></code></pre></div></div>`;
 
     const modalElement = document.createElement('div');
     modalElement.classList.add('picture-tag-assembler__modal');
     modalElement.setAttribute('aria-labelledby', 'pictureTagAssemblerTitle');
     modalElement.innerHTML = infoModalMarkup;
     document.body.appendChild(modalElement);
+
+    modalCloseButton = modalElement.querySelector('.picture-tag-assembler__close-btn');
+    modalCloseButton.addEventListener('click', () => {
+        modalElement.style.display = '';
+    });
+
+    function displayModal() {
+        modalElement.style.display = 'block';
+
+        document.querySelector('.picture-tag-assembler__modal .picture-tag-assembler__close-btn').addEventListener('click', () => {
+            modalElement.style.display = '';
+        });
+    }
     
     const modalCodeElement = modalElement.querySelector('.picture-tag-assembler__modal code');
     const ptaBreakpoints = (ptaParams.breakpoints) ? ptaParams.breakpoints.trim().replace(/\s+/g, '').split(',').join(', ') : '576,  768, 992, 1200, 1600';
     let ptaImageService = (ptaParams.imageService) ? ptaParams.imageService : 'none';
     ptaImageService = (ptaImageService === 'none') ? 'none' : 'https://picsum.photos';
 
-    let ptaPixelDensity = (ptaParams.pixelDensity) ? ptaParams.pixelDensity.trim().replace(/\s+/g, '').split(',').join(', ').split(',') : 'none';
+    let ptaPixelDensity = (ptaParams.pixelDensity) ? ptaParams.pixelDensity.trim().replace(/\s+/g, '').split(',').join(', ').split(',') : '';
 
-    const infoDialogMarkup = `<div class="picture-tag-assembler__dialog"><div class="picture-tag-assembler__header"><div class="picture-tag-assembler__title">Picture Tag Assembler</div></div><div class="picture-tag-assembler__body"><div class="picture-tag-assembler__form-group"><label for="pictureTagAssemblerBreakpoints">Breakpoints (px):</label> <input id="pictureTagAssemblerBreakpoints" type="text" placeholder="Breakpoints" value="${ptaBreakpoints}"><div class="picture-tag-assembler__small">Comma separated numbers.</div></div><div class="picture-tag-assembler__form-group"><label for="pictureTagAssemblerPixelDensity">Pixel density:</label> <input id="pictureTagAssemblerPixelDensity" type="text" placeholder="Enter URL" value="${ptaPixelDensity}"><div class="picture-tag-assembler__small">Comma separated numbers.</div></div><div class="picture-tag-assembler__form-group"><label for="pictureTagAssemblerImageService">Image service:</label> <input id="pictureTagAssemblerImageService" type="text" placeholder="Enter URL" value="${ptaImageService}"></div></div><div class="picture-tag-assembler__footer"><div class="picture-tag-assembler__submit" role="button" tabindex="0"><span class="picture-tag-assembler__submit-initial">Generate</span> <span class="picture-tag-assembler__submit-generating"><span class="picture-tag-assembler__visually-hidden">Generating</span> <span class="picture-tag-assembler__submit-loader"></span></span></div></div></div>`;
+    const infoDialogMarkup = `<div class="picture-tag-assembler__dialog"><div class="picture-tag-assembler__close-btn" aria-label="Close" role="button" tabindex="0"><svg aria-hidden="true" x="0px" y="0px" width="15.6px" height="15.6px" viewBox="0 0 15.6 15.6" style="enable-background:new 0 0 15.6 15.6;"><rect x="6.8" y="-2.2" transform="matrix(0.7071 0.7071 -0.7071 0.7071 7.7782 -3.2218)" width="2" height="20"></rect><rect x="6.8" y="-2.2" transform="matrix(0.7071 -0.7071 0.7071 0.7071 -3.2218 7.7782)" width="2" height="20"></rect></svg></div><div class="picture-tag-assembler__pane" data-pta-step="1"><div class="picture-tag-assembler__header"><div class="picture-tag-assembler__title">Image Tools</div></div><div class="picture-tag-assembler__body"><div class="picture-tag-assembler__view-specs" role="anchor" tabindex="0" data-step-target="2"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 512 512" width="15" height="15" style="vertical-align: middle; margin-right: 4px; fill: currentColor; pointer-events: none;"><path d="M0,96C0,60.7,28.7,32,64,32h384c35.3,0,64,28.7,64,64v320c0,35.3-28.7,64-64,64H64c-35.3,0-64-28.7-64-64V96ZM323.8,202.5c-4.5-6.6-11.9-10.5-19.8-10.5s-15.4,3.9-19.8,10.5l-87,127.6-26.5-33.1c-4.6-5.7-11.5-9-18.7-9s-14.2,3.3-18.7,9l-64,80c-5.8,7.2-6.9,17.1-2.9,25.4s12.4,13.6,21.6,13.6h336c8.9,0,17.1-4.9,21.2-12.8s3.6-17.4-1.4-24.7l-120-176h0ZM112,192c26.5,0,48-21.5,48-48s-21.5-48-48-48-48,21.5-48,48,21.5,48,48,48Z"/></svg> Compile Image Specs</div><div class="picture-tag-assembler__generate" role="anchor" tabindex="0" data-step-target="3"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 512 512" width="15" height="15" style="vertical-align: middle; margin-right: 4px; fill: currentColor; pointer-events: none;"><path d="M78.6,5c-9.5-7.4-23-6.5-31.6,2L7,47c-8.5,8.5-9.4,22-2.1,31.6l80,104c4.5,5.9,11.6,9.4,19,9.4h54.1l109,109c-14.7,29-10,65.4,14.3,89.6l112,112c12.5,12.5,32.8,12.5,45.3,0l64-64c12.5-12.5,12.5-32.8,0-45.3l-112-112c-24.2-24.2-60.6-29-89.6-14.3l-109-109v-54.1c0-7.5-3.5-14.5-9.4-19L78.6,5ZM19.9,396.1c-12.7,12.7-19.9,30-19.9,48,0,37.5,30.4,67.9,67.9,67.9s35.3-7.2,48-19.9l117.8-117.8c-7.8-20.9-9-43.6-3.6-65.1l-61.7-61.7L19.9,396.1ZM512,144c0-10.5-1.1-20.7-3.2-30.5-2.4-11.2-16.1-14.1-24.2-6l-63.9,63.9c-3,3-7.1,4.7-11.3,4.7h-57.4c-8.8,0-16-7.3-16-16.1v-57.4c0-4.2,1.7-8.3,4.7-11.3l63.9-63.9c8.1-8.1,5.2-21.8-6-24.2-9.9-2.1-20.1-3.2-30.6-3.2-79.5,0-144,64.5-144,144v.8l85.3,85.3c36-9.1,75.8.5,104,28.7l15.7,15.7c49-23,83-72.8,83-130.5ZM56,432c0-13.3,10.7-24,24-24s24,10.7,24,24-10.7,24-24,24-24-10.7-24-24Z"/></svg> Generate Picture Tag <svg aria-hidden="true" x="0px" y="0px" width="7" height="13" viewBox="0 0 8.5 14.1" style="vertical-align: middle; margin-right: 4px; fill: currentColor; pointer-events: none; transform: scale(-1, 1); margin-left: auto;"><polygon points="0,7.1 7.1,14.1 8.5,12.7 2.8,7.1 8.5,1.4 7.1,0 0,7.1 0,7.1 "></polygon></svg></div></div></div><div class="picture-tag-assembler__pane" data-pta-step="2" hidden><div class="picture-tag-assembler__header"><div class="picture-tag-assembler__back-btn" role="anchor" tabindex="0" data-step-target="1"><svg aria-hidden="true" x="0px" y="0px" width="8.5px" height="14.1px" viewBox="0 0 8.5 14.1" style="enable-background:new 0 0 8.5 14.1;"><polygon points="0,7.1 7.1,14.1 8.5,12.7 2.8,7.1 8.5,1.4 7.1,0 0,7.1 0,7.1 "></polygon></svg></div><div class="picture-tag-assembler__title">Image Tools</div></div><div class="picture-tag-assembler__body"></div></div><div class="picture-tag-assembler__pane" data-pta-step="3" hidden><div class="picture-tag-assembler__header"><div class="picture-tag-assembler__back-btn" role="anchor" tabindex="0" data-step-target="1"><svg aria-hidden="true" x="0px" y="0px" width="8.5px" height="14.1px" viewBox="0 0 8.5 14.1" style="enable-background:new 0 0 8.5 14.1;"><polygon points="0,7.1 7.1,14.1 8.5,12.7 2.8,7.1 8.5,1.4 7.1,0 0,7.1 0,7.1 "></polygon></svg></div><div class="picture-tag-assembler__title">Picture Tag Assembler</div></div><div class="picture-tag-assembler__body"><div class="picture-tag-assembler__form-group"><label for="pictureTagAssemblerBreakpoints">Breakpoints (px):</label> <input id="pictureTagAssemblerBreakpoints" type="text" placeholder="Breakpoints" value="${ptaBreakpoints}"><div class="picture-tag-assembler__small">Comma separated numbers.</div></div><div class="picture-tag-assembler__form-group"><label for="pictureTagAssemblerPixelDensity">Pixel density:</label> <input id="pictureTagAssemblerPixelDensity" type="text" placeholder="Example: 2x, 3x" value="${ptaPixelDensity}"><div class="picture-tag-assembler__small">Comma separated numbers.</div></div><div class="picture-tag-assembler__form-group"><label for="pictureTagAssemblerImageService">Image service:</label> <input id="pictureTagAssemblerImageService" type="text" placeholder="Enter URL" value="${ptaImageService}"></div></div><div class="picture-tag-assembler__footer"><div class="picture-tag-assembler__submit" role="button" tabindex="0"><span class="picture-tag-assembler__submit-initial">Generate</span></div></div><div class="picture-tag-assembler__analyzing"><div class="picture-tag-assembler__progress"><svg class="picture-tag-assembler__progress-svg" xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 48 48" style="width: 48px; height: 48px;"><circle cx="24" cy="24" r="21" fill="none" stroke="#fff" stroke-width="1px" style="opacity: .1;"/><circle class="picture-tag-assembler__progress-circle" cx="24" cy="24" r="22" fill="none" stroke="#98c379" stroke-linecap="round" stroke-dasharray="138.22996" stroke-dashoffset="138.22996" stroke-width="4px"/></svg> <span class="picture-tag-assembler__progress-percent">0</span></div><span class="picture-tag-assembler__analyzing-text">Analyzing</span></div></div></div>`;
+
+    let submitButton
 
     const positionDialogTopMousePointer = (dialogEl, event) => {
         const mouseX = event.clientX;
@@ -1275,7 +1280,7 @@ window.addEventListener('load', () => {
         dialogElement.innerHTML = infoDialogMarkup;
         document.body.appendChild(dialogElement);
 
-        const submitButton = dialogElement.querySelector('.picture-tag-assembler__submit');
+        submitButton = dialogElement.querySelector('.picture-tag-assembler__submit');
         submitButton.setAttribute('data-pta-associated-index', imageIndex);
 
         positionDialogTopMousePointer(dialogElement, event);
@@ -1289,6 +1294,36 @@ window.addEventListener('load', () => {
             pictureTagAssembler(`[data-pta-index="${imageIndex}"]`, finalBreakpoints, finalService);
 
             event.target.closest('.picture-tag-assembler').classList.add('js-pta--in-progress');
+        });
+
+        const dialogCloseButton = dialogElement.querySelector('.picture-tag-assembler__close-btn');
+        dialogCloseButton.addEventListener('click', () => {
+            dialogElement.remove();
+        });
+
+        // Clicking on data-step-target element displays data-pta-step pane and hides others
+        document.addEventListener('click', (event) => {
+            if (event.target.matches('[data-step-target]')) {
+                const targetStep = event.target.getAttribute('data-step-target');
+                const dialogElement = event.target.closest('.picture-tag-assembler');
+                const allPanes = dialogElement.querySelectorAll('.picture-tag-assembler__pane');
+
+                allPanes.forEach(pane => {
+                    if (pane.getAttribute('data-pta-step') === targetStep) {
+                        pane.removeAttribute('hidden');
+                    } else {
+                        pane.setAttribute('hidden', '');
+                    }
+                });
+            }
+        });
+
+        // Clicking on .picture-tag-assembler__view-specs displays image info modal
+        const viewSpecsButton = dialogElement.querySelector('.picture-tag-assembler__view-specs');
+        viewSpecsButton.addEventListener('click', (event) => {
+            const imageToInspectIndex = event.target.closest('.picture-tag-assembler').querySelector('.picture-tag-assembler__submit').getAttribute('data-pta-associated-index');
+            const imageToInspectElement = document.querySelector(`[data-pta-index="${imageToInspectIndex}"]`);
+            displayImageInfo(imageToInspectElement);
         });
     };
 
@@ -1309,7 +1344,7 @@ window.addEventListener('load', () => {
     const pictureTagAssembler = (thisImage, breakpoints, service) => {
 
         const iframeMarkup = /* html */ `
-            <iframe id="pictureTagAssemblerIframe" scrolling="no" src="${window. location. href}" frameborder="0" height="720" allow-same-origin></iframe>
+            <iframe id="pictureTagAssemblerIframe" scrolling="no" src="${window.location.href}" frameborder="0" height="720" allow-same-origin></iframe>
         `;
 
         const hiddenIframeDiv = document.createElement('div');
@@ -1323,51 +1358,130 @@ window.addEventListener('load', () => {
         const imageService = service;
 
         const getImageInfo = (loadedIFrameContent, imageSelector) => {
-            const iframeDoc = loadedIFrameContent.contentDocument || loadedIFrameContent.contentWindow.document;
-            iframeDoc.body.classList.add('js-no-pta');
-            const image = iframeDoc.querySelector(imageSelector);
-            const accordion = image.closest('.collapse');
+            return new Promise((resolve, reject) => {
+                const iframeDoc = loadedIFrameContent.contentDocument || loadedIFrameContent.contentWindow.document;
+                iframeDoc.body.classList.add('js-no-pta');
+                const image = iframeDoc.querySelector(imageSelector);
+                const accordion = image.closest('.collapse');
 
-            if (accordion) {
-                accordion.style.display = "block !importaint";
-            }
+                if (accordion) {
+                    accordion.style.display = "block !important";
+                }
 
-            if (image) {
-                return {
-                        imageTag: image,
-                        iSrc: image.src,
-                        dWidth: image.clientWidth,
-                        dHeight: image.clientHeight
+                if (!image) {
+                    console.log('Image not found in iframe.');
+                    reject(new Error('Image not found in iframe.'));
+                    return;
+                }
+
+                // Function to check if image is loaded and return dimensions
+                const checkImageLoaded = () => {
+                    // For images in picture tags, we need to check the actual displayed image
+                    const displayedImage = image.closest('picture') ? 
+                        image.closest('picture').querySelector('img') : image;
+                    
+                    if (displayedImage && displayedImage.complete && displayedImage.naturalWidth > 0) {
+                        resolve({
+                            imageTag: image,
+                            iSrc: image.src,
+                            dWidth: image.clientWidth,
+                            dHeight: image.clientHeight
+                        });
+                    } else {
+                        // Image not yet loaded, wait for load event
+                        const handleLoad = () => {
+                            displayedImage.removeEventListener('load', handleLoad);
+                            displayedImage.removeEventListener('error', handleError);
+                            resolve({
+                                imageTag: image,
+                                iSrc: image.src,
+                                dWidth: image.clientWidth,
+                                dHeight: image.clientHeight
+                            });
+                        };
+
+                        const handleError = () => {
+                            displayedImage.removeEventListener('load', handleLoad);
+                            displayedImage.removeEventListener('error', handleError);
+                            console.warn('Image failed to load, using current dimensions');
+                            resolve({
+                                imageTag: image,
+                                iSrc: image.src,
+                                dWidth: image.clientWidth,
+                                dHeight: image.clientHeight
+                            });
+                        };
+
+                        displayedImage.addEventListener('load', handleLoad);
+                        displayedImage.addEventListener('error', handleError);
+                        
+                        // Fallback timeout in case the load event doesn't fire
+                        setTimeout(() => {
+                            displayedImage.removeEventListener('load', handleLoad);
+                            displayedImage.removeEventListener('error', handleError);
+                            console.warn('Image load timeout, using current dimensions');
+                            resolve({
+                                imageTag: image,
+                                iSrc: image.src,
+                                dWidth: image.clientWidth,
+                                dHeight: image.clientHeight
+                            });
+                        }, 5000); // 5 second timeout
                     }
-            } else {
-                console.log('Image not found in iframe.');
-            }
+                };
+
+                checkImageLoaded();
+            });
         };
 
         const finalBreakpoints = breakpoints;
         const viewportSizes = finalBreakpoints.split(',');
-        const timeBetween = (ptaParams.timeBetweenCheck) ? ptaParams.timeBetweenCheck : 1000;
         let pictureTagGeneratedMarkup;
 
-        console.log(timeBetween);
-
-        const runThroughViewportSizes = (iframe) => {
+        const runThroughViewportSizes = async (iframe) => {
             let pictureTagCreated = false;
             let lastSrcset = '';
             const selectedImage = document.querySelector(thisImage);
             const densityInputValue = document.querySelector('#pictureTagAssemblerPixelDensity').value;
-            const finalDensities = (densityInputValue !== 'none') ? densityInputValue.split(',') : null;
+            const finalDensities = (densityInputValue !== '') ? densityInputValue.split(',') : null;
+            const viewportSizesLength = viewportSizes.length;
+            let viewportCounter = 0;
+            const circleLoaderCircle = document.querySelector('.picture-tag-assembler__progress-circle');
+            const circleLoaderPercent = document.querySelector('.picture-tag-assembler__progress-percent');
 
-            viewportSizes.forEach((size, index) => {
+            for (let index = 0; index < viewportSizes.length; index++) {
+                const size = viewportSizes[index];
                 const breakpointNum = parseInt(size);
 
-                setTimeout(() => {
-                    iframe.setAttribute('width', breakpointNum - 1 + 'px');
+                // Set iframe width and allow for browser reflow
+                iframe.setAttribute('width', breakpointNum - 1 + 'px');
+                
+                // Small delay to allow browser reflow before checking image dimensions
+                await new Promise(resolve => setTimeout(resolve, 100));
+                
+                try {
                     const {
                         dWidth: imageWidth,
                         dHeight: imageHeight,
                         imageTag
-                    } = getImageInfo(iframe, thisImage);
+                    } = await getImageInfo(iframe, thisImage);
+
+                    viewportCounter++;
+                    circleLoaderCircle.style.setProperty('stroke-dashoffset', 138.22996 - (138.22996 * (viewportCounter / viewportSizesLength)));
+
+                    
+                    // Quickly count to next percentage
+                    const percentComplete = Math.round((viewportCounter / viewportSizesLength) * 100);
+                    let currentPercent = parseInt(circleLoaderPercent.textContent);
+                    const percentInterval = setInterval(() => {
+                        if (currentPercent < percentComplete) {
+                            currentPercent++;
+                            circleLoaderPercent.textContent = `${currentPercent}`;
+                        } else {
+                            clearInterval(percentInterval);
+                        }
+                    }, (viewportSizesLength * 10));
+
 
                     const imageSourceUrl = (imageService === 'none') ? selectedImage.src : imageService;
                     let serviceURL = (imageService === 'none') ? `${imageSourceUrl}?width=${imageWidth}&height=${imageHeight}` : `${imageSourceUrl}/${imageWidth}/${imageHeight}?width=${imageWidth}&height=${imageHeight}`;
@@ -1437,7 +1551,7 @@ window.addEventListener('load', () => {
                             'max_preserve_newlines': 1,
                             'inline': ['span', 'b', 'i']
                         });
-                        modalCodeElement.textContent = pictureHTMLText.replace(/&amp;/g, '&');;
+                        modalCodeElement.textContent = pictureHTMLText.replace(/&amp;/g, '&');
                         hljs.highlightElement(modalCodeElement);
                         hiddenIframeDiv.remove();
                         document.querySelector('.js-pta--in-progress').classList.remove('js-pta--in-progress');
@@ -1445,7 +1559,9 @@ window.addEventListener('load', () => {
                         const currentDialog = document.querySelector('.picture-tag-assembler');
 
                         if (currentDialog) {
-                            currentDialog.remove();
+                            setTimeout(() => {
+                                currentDialog.remove();
+                            }, 1000);
                         }
 
                         document.querySelector('.picture-tag-assembler__modal-test-btn').addEventListener('click', () => {
@@ -1455,14 +1571,16 @@ window.addEventListener('load', () => {
                             replaceThisEl.remove();
                         });
 
-                        modalElement.style.display = 'block';
+                        setTimeout(() => {
+                            displayModal();
+                        }, 1000);
 
-                        document.querySelector('.picture-tag-assembler__modal-close-btn').addEventListener('click', () => {
-                            modalElement.style.display = '';
-                        });
                     }
-                }, index * timeBetween);
-            });
+                } catch (error) {
+                    console.error('Error getting image info for viewport size', size, ':', error);
+                    // Continue to next viewport size on error
+                }
+            }
         };
 
         function setPixelDensity(item, src, width, height) {
@@ -1538,12 +1656,6 @@ window.addEventListener('load', () => {
                 buildAndPlaceDialog(event.target, targetIndex, event);
             }
         };
-
-        if (!event.target.closest('.picture-tag-assembler')) {
-            if (currentDialog) {
-                currentDialog.remove();
-            }
-        };
     });
 
     const ptaCopyButton = document.querySelector('.picture-tag-assembler__modal-copy-btn');
@@ -1558,6 +1670,101 @@ window.addEventListener('load', () => {
             console.log('Text copied to clipboard!');
         }).catch(err => {
             console.error('Failed to copy text: ', err);
+        });
+    }
+
+    const displayImageInfo = (el) => {
+        const pictureOrImageElement = el.closest('picture') ? el.closest('picture') : el;
+        const imageElement = (pictureOrImageElement.querySelector('img')) ? pictureOrImageElement.querySelector('img') : pictureOrImageElement;
+        let sources = [];
+
+        if (pictureOrImageElement.tagName.toLowerCase() === 'picture') {
+            sources = [...pictureOrImageElement.querySelectorAll('source, img')];
+        } else {
+            sources = [imageElement];
+        }
+
+        let maxWidth = 0;
+        let maxHeight = 0;
+        let imageDetails = [];
+
+        function getIntrinsicSize(src, callback) {
+            const tempImgElement = new Image();
+            
+            tempImgElement.onload = function () {
+                callback(tempImgElement.naturalWidth, tempImgElement.naturalHeight);
+            };
+
+            tempImgElement.src = src;
+        }
+
+        sources.forEach((source, index) => {
+            const srcUrl = source.srcset || source.src || '';
+            
+            getIntrinsicSize(srcUrl, async (width, height) => {
+                // Parse srcset to handle pixel density descriptors
+                const srcsetParts = srcUrl.split(',').map(s => s.trim());
+                let entries = [];
+                
+                for (const part of srcsetParts) {
+                    const [url, descriptor = '1x'] = part.split(/\s+/);
+                    const density = descriptor.replace('x', '');
+                    
+                    await new Promise((resolve) => {
+                        getIntrinsicSize(url, (w, h) => {
+                            entries.push({
+                                url: url,
+                                density: descriptor,
+                                width: w,
+                                height: h
+                            });
+                            resolve();
+                        });
+                    });
+                }
+                
+                let entry = {
+                    order: index + 1,
+                    type: source.tagName.toLowerCase() === 'img' ? 'Img Source' : 'Source',
+                    src: srcUrl,
+                    media: source.media || '(none)',
+                    size: `${width}&times;${height}px`,
+                    densities: entries
+                };
+
+                imageDetails.push(entry);
+
+                if (width > maxWidth) maxWidth = width;
+                
+                if (height > maxHeight) maxHeight = height;
+
+                if (imageDetails.length === sources.length) {
+                    imageDetails.sort((a, b) => a.order - b.order);
+
+                    let imageInfoElement = imageDetails.map(item => {
+                        let densityInfo = '';
+                        if (item.densities && item.densities.length > 1) {
+                            densityInfo = '<br>&nbsp;&nbsp;<strong>Pixel Densities:</strong><br>' + 
+                                item.densities.map(d => 
+                                    `&nbsp;&nbsp;&nbsp;&nbsp;${d.density}: ${d.width}&times;${d.height}px`
+                                ).join('<br>');
+                        }
+                        
+                        return `
+                        <strong>${item.type} ${item.order}:</strong><br>
+                        &nbsp;&nbsp;src: ${item.src}<br>
+                        &nbsp;&nbsp;media: ${item.media}<br>
+                        <strong>Intrinsic Size:</strong> ${item.size}${densityInfo}<br>
+                    `}).join('<br>');
+
+                    imageInfoElement += imageElement.alt.trim() === '' ? "<br>Alt text should be empty\n" : "<br>Alt text is required\n";
+
+                    imageInfoElement += `<br>Recommended original image size: ${maxWidth}x${maxHeight}px<br>`;
+
+                    modalElement.querySelector('.picture-tag-assembler__modal-body').innerHTML = `<div class="picture-tag-assembler__modal-info">${imageInfoElement}</div>`;
+                    displayModal();
+                }
+            });
         });
     }
 });
