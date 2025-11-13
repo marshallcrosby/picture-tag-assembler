@@ -300,7 +300,14 @@ window.addEventListener('load', () => {
             const circleLoaderCircle = document.querySelector('.picture-tag-assembler__progress-circle');
             const circleLoaderPercent = document.querySelector('.picture-tag-assembler__progress-percent');
 
+            // time-between-check is set use that in between viewport size checks
+            const timeBetweenCheck = (ptaParams.timeBetweenCheck) ? parseInt(ptaParams.timeBetweenCheck) : 100;
+
             for (let index = 0; index < viewportSizes.length; index++) {
+                if (timeBetweenCheck > 0) {
+                    await new Promise(resolve => setTimeout(resolve, timeBetweenCheck));
+                }
+                
                 const size = viewportSizes[index];
                 const breakpointNum = parseInt(size);
 
